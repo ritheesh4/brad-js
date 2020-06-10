@@ -8,3 +8,8 @@
 - In the chrome browser, numbers are blue 
   and strings are black.
 - The web console can be used for easy fixing and easy  handling of situations
+
+
+- firstName //Camel case -recommended
+  first_name // UnderScore
+  FirstName //Pascal case -recommded for ES6 class
