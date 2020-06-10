@@ -48,4 +48,24 @@
 -console.log(val.toFixed(2));
  - Here toFixed gives the two decimal point values of the number
    
+#Video10
+
+- Math Functions
+  val = Math.PI;  - pritns pi
+  val = Math.E; -prints e
+  val = Math.round(2.4); - rounding the number
+  val = Math.ceil(2.4); - rounding the number to top, here result would be 3.
+  val = Math.floor(2.8); -rounding the nubmer to the bottom, here the result would be 2.
+  val = Math.sqrt(64); - finds sqrt
+  val = Math.abs(-3); - finding the absolute value. Here that would be 3.
+  val = Math.pow(8,2); - finding the the 8 to the power of 2. 64.
+  val = Math.min(2,33,4,1,55,3,6,-2); -finding the minimum value.
+  val = Math.max(2,33,4,1,55,3,6,-2); -findign the maximum value.
+  val = Math.random(); -generate a random number.
+
+  val = Math.floor(Math.random() * 20 + 1); -converts random number which has decimal points to single number which comes under 20.
+
+  #Video11
+
+  
 
