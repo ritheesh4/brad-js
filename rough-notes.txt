@@ -1,0 +1,10 @@
+- Using ! and tab, simple html template can be implemented.
+- The javascript code can be linked to the html file like css files.
+- Inside of the <script src ="app.js"><script/>, the location of the script can be mentioned.
+- In the browser console, type document and you will get the html file or document of that page.
+- document.querySelector('h1').style.color="red". Using this document.querySelector I can       
+  change the properties
+  of that particular class directly from the console of the browser.
+- In the chrome browser, numbers are blue 
+  and strings are black.
+- The web console can be used for easy fixing and easy  handling of situations
