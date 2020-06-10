@@ -42,5 +42,10 @@
   - We do not need to specify types.
   - Most other languages are statically types (JAVA, C# C++).
   - There are supersets of JS and addons to allow static typing(TypeScript, Flow)
-  
+
+#Video9
+- val = 5;
+-console.log(val.toFixed(2));
+ - Here toFixed gives the two decimal point values of the number
+   
 
