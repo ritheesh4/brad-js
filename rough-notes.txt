@@ -83,6 +83,9 @@ val = numbers.sort(function(x,y){
     return x-y;
 }) 
    
+#video 15
+
+- new Date(); By taking the value of this function, defaulty it returns today's date.
 
 
   
