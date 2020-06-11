@@ -102,3 +102,29 @@ This makes very simple to check some conditions and print the results. Thirst va
 #video 17
 - Using switches, else if complications and lines can be reduced.
 If a condition satisfies, break is introduced and that checking place is getting stopped by that condition.
+
+#video 18
+
+ IMMIDIEATLEY INVOKABLE FUCNTION EXPRESSIONS =IIFEs
+ Function immedieately executes and produces the output.
+ (function (name){
+    console.log('Hello ' + name);
+})('Brad');
+
+- Different functions can be included inside of an object. And we can call the like we take values from object.
+const todo = {
+    add: function(){
+        console.log('Add todo...');
+    },
+    eidt: function(id){
+        console.log(`Edit to do ${id}`);
+    }
+}
+
+
+todo.add();
+
+
+#video 19
+
+
