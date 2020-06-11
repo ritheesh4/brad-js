@@ -88,5 +88,13 @@ val = numbers.sort(function(x,y){
 - new Date(); By taking the value of this function, defaulty it returns today's date.
 
 
-  
+#Video 16
+- When we check the values, using conditions, use the === to make sure the types are same.
+- While checking whether there is value is there or not in a variable, try to use the typeof property to check wether it is undefined or not. Otherwise that may throw error.
 
+#video 16
+
+- Ternary operation
+console.log( id === 100 ? 'CORRECT' : 'INCORRECT');
+This makes very simple to check some conditions and print the results. Thirst value prints if the condition is true and the second value prints if the condition is flase.
+- In js, intendation programming is also available like python.
