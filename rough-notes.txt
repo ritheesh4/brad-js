@@ -65,7 +65,21 @@
 
   val = Math.floor(Math.random() * 20 + 1); -converts random number which has decimal points to single number which comes under 20.
 
-  #Video11
+  #Video 13
+
+  val = Array.isArray(numbers); = This will return an true value if the val is an array. So this can be used to make sure that the variable is array or not.
+  - numbers.unshift(120); This can be used to add an element to the front of an array. Here the array name is numbers.
+
+ -numbers.unshift(12);
+ Take off from end
+numbers.pop();
+ Take of from front
+numbers.shift();
+
+- numbers.splice(2,3);  This means, at position 2, remove 3 items
+- while using sort (numbers.sort()), the chance for it to make wrong sorting are there like orders changes in github if we add 10 as a number order. To avoid this
+   
+
 
   
 
