@@ -77,7 +77,11 @@ numbers.pop();
 numbers.shift();
 
 - numbers.splice(2,3);  This means, at position 2, remove 3 items
-- while using sort (numbers.sort()), the chance for it to make wrong sorting are there like orders changes in github if we add 10 as a number order. To avoid this
+- while using sort (numbers.sort()), the chance for it to make wrong sorting are there like orders changes in github if we add 10 as a number order. To avoid this us the below code.
+
+val = numbers.sort(function(x,y){
+    return x-y;
+}) 
    
 
 
