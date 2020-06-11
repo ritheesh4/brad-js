@@ -98,3 +98,7 @@ val = numbers.sort(function(x,y){
 console.log( id === 100 ? 'CORRECT' : 'INCORRECT');
 This makes very simple to check some conditions and print the results. Thirst value prints if the condition is true and the second value prints if the condition is flase.
 - In js, intendation programming is also available like python.
+
+#video 17
+- Using switches, else if complications and lines can be reduced.
+If a condition satisfies, break is introduced and that checking place is getting stopped by that condition.
