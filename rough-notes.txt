@@ -127,4 +127,19 @@ todo.add();
 
 #video 19
 
+- foreEach(): The forEach() method calls a function once for each element in an array, in order.
+- New concept For in loop
+const user = {
+    firstName: 'John',
+    lastName: 'Doe',
+    age: 40
+}
+
+for (let x in user) {
+    console.log(`${x} : ${user[x]}`);
+
+}
+
+The objects key value pair can be obtained by for in loop method easily.
+
 
