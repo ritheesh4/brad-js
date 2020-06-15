@@ -155,3 +155,8 @@ Document object mentioned
 - javscript can be used to read/write/manipulate to the Document
 - Object Oriented Representation
 
+
+#Video 024
+
+- Two types of selectors are available.
+ -Single element and multiple element selectors 
