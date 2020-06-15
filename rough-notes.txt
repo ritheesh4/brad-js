@@ -162,3 +162,6 @@ Document object mentioned
  -Single element and multiple element selectors 
 -querySelector()
 The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
+
+#video 26
+- chiil nodes give everything including the comments and texts in the html. If we wish to select only the element, use children instead of child. Children will only return the element.
