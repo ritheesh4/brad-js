@@ -147,3 +147,21 @@ The objects key value pair can be obtained by for in loop method easily.
 - If we use var, and at some points the global value of the var get changed. It can make big problems.
 - In for loop also this global variable's value gets changed if we use var. So that is one of the important reason to avoid var and use let and const whil doing js programmings.
 
+
+#video 022
+
+Document object mentioned
+- Tree of nodes/ elements created by the browser
+- javscript can be used to read/write/manipulate to the Document
+- Object Oriented Representation
+
+
+#Video 024
+
+- Two types of selectors are available.
+ -Single element and multiple element selectors 
+-querySelector()
+The Document method querySelector() returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.
+
+#video 26
+- chiil nodes give everything including the comments and texts in the html. If we wish to select only the element, use children instead of child. Children will only return the element.
