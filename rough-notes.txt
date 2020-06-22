@@ -168,3 +168,10 @@ The Document method querySelector() returns the first Element within the documen
 
 # video 44
 - this property can be used to find the instance values. 
+
+#video 45 string becomes object if put new infront of it.
+  new String('ritheesh');
+  ritheesh becomes an object here.
+  - When we use RegExp we should put \ at the begining if we have \ value to print
+    RegExp('\\w+');
+    tryping to print /\w+/;
