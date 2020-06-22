@@ -175,3 +175,6 @@ The Document method querySelector() returns the first Element within the documen
   - When we use RegExp we should put \ at the begining if we have \ value to print
     RegExp('\\w+');
     tryping to print /\w+/;
+#video 50
+  - The super() is used to pass the parameters of the parent or original class. The subclass parameters have to be kept as
+  this.membership or this.phone like that.
