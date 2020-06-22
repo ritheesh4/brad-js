@@ -7,3 +7,6 @@
     integrity="sha384-wvfXpqpZZVQGK6TAh5PV1GOfQNHSoD2xbE+QkPxCAF1NEevoEH3S10sibVcOQVnN" 
     crossorigin="anonymous"
   Did not check the reason for this.
+
+
+  2. In the video 41, though the input has been set as integer, the letter e is being taken as input. Is that a bug??
