@@ -10,3 +10,5 @@
 
 
   2. In the video 41, though the input has been set as integer, the letter e is being taken as input. Is that a bug??
+
+  3. In the video 44 about 10:00 minutes, we are calculating the age using date of birth. But if I put 02-12-1994 as date of birth, it returns age as 26 where the correct age is 25.
