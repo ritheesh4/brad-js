@@ -178,3 +178,8 @@ The Document method querySelector() returns the first Element within the documen
 #video 50
   - The super() is used to pass the parameters of the parent or original class. The subclass parameters have to be kept as
   this.membership or this.phone like that.
+
+# video82 
+Error handlers
+ try catch : The main advantage is we can handle the error without stopiing the entire script.
+ - We can format the errors as the way we want.
