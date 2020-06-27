@@ -1,7 +1,7 @@
 let re;
 
 // Literal Characters
-re  = /hello/;
+re = /hello/;
 re = /hello/i;
 
 // Metacharacter Symbols
@@ -43,6 +43,10 @@ re = /\s/; // Match whitespace char
 re = /\S/; // Match non-whitespace char
 re = /Hell\b/i; // Word boundary
 
+// Assertions
+re = /x(?=y)/; // Match x only if followed by y
+re = /x(?!y)/; // Match x only if NOT followed by y
+
 
 
 
@@ -51,14 +55,14 @@ re = /Hell\b/i; // Word boundary
 
 
 // String to match
-const str ='h';
+const str = 'h';
 
 // Log Results
 const result = re.exec(str);
 console.log(result);
 
-function reTest(re, str){
-    if(re.test(str)){
+function reTest(re, str) {
+    if (re.test(str)) {
         console.log(`${str} Matched ${re.source}`);
 
     } else {
