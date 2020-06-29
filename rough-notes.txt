@@ -190,3 +190,11 @@ Error handlers
 - Used to explain the pattern of characters.
 - Used for validation.
 - Email addresses, phone numbers etc. They have certain patterns.
+
+#video 88
+- Iterators are like advanced loops
+- Generators are functions that can return multiple values
+
+#Video 90
+- Symbols are not enumerable in for ...in
+- Symbols are ignored by JSON.stringifys
