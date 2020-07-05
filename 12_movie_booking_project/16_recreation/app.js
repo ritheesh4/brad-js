@@ -1,5 +1,5 @@
 // sectionList(Number of sections, number of rows in a sectionList, number of seats in a row)
-seatArrangement(4, 2, 20);
+seatArrangement(2, 2, 20);
 let seatSelectionLimit = 3;
 let seatSelectedCount = 0;
 let seatNumbers = [];
@@ -48,7 +48,8 @@ function loadFilm(e) {
         if (this.status === 200) {
             const data = JSON.parse(this.responseText);
             for(let arryaIndex=0; arryaIndex< data.length; arryaIndex++){
-                ticketPrice.push(data.ticket)
+                ticketPrice[arryaIndex]=data[arryaIndex].ticket;
+                console.log(data[2].ticket)
             }
             console.log(data.length)
             data.forEach(element => {
@@ -62,6 +63,7 @@ function loadFilm(e) {
 
 
 loadFilm();
+Object.values(ticketPrice);
 console.log(ticketPrice)
 
 document.getElementById('movie').addEventListener('click', selectedMovie)
