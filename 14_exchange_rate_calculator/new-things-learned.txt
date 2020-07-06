@@ -1,0 +1,12 @@
+CSS
+-----
+:root {
+    --primary-color: #5fbaa7;    
+}
+
+- This is applying a primary color to the root scope. So we can use it as a theme for the color fo the text.
+- After declaring this, the color can be used like below example
+
+h1 {
+    color: var(--primary-color);
+}
