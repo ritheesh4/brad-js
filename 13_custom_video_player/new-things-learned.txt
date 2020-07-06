@@ -1,0 +1,1 @@
+1. Use of !important in background color : important flag orverides any other background properties and perfectly add the background colour
