@@ -1,0 +1,34 @@
+Array.from(seats).forEach(function (element) {
+    element.addEventListener('click', function () {
+        seatSelected(element);
+        // console.log(element)
+
+    });
+});
+
+function seatSelected(element) {
+    console.log(element);
+   document.element.innerHtml =` <div>hello</div>`
+    // if (document.getElementById(id).style.background === 'red') {
+    //     console.log("seats count", seatSelectedCount);
+    //     seatSelectedCount--;
+
+    //     document.getElementById(id).style.background = 'green';
+    //     seatPrice(id);
+
+    // } else {
+
+    //     if (seatSelectedCount === seatSelectionLimit) {
+    //         alert('Sorry!!..You have reached the limit')
+    //     } else {
+    //         seatSelectedCount++;
+    //         seatNumbers += element.id;
+    //         console.log(seatNumbers)
+    //         console.log(seatNumbers[seatNumbers.length - 1])
+    //         document.getElementById(id).style.background = 'red';
+    //         seatPrice(id);
+    //     }
+
+    // }
+
+}
