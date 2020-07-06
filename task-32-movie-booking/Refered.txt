@@ -1,0 +1,3 @@
+1. nth-of-type new property use (new idea)
+2. Togling property (new idea)
+3. map
