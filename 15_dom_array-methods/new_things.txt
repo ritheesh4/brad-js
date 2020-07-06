@@ -4,3 +4,7 @@
 function updateDOM(providedData = data){
     
 }
+
+
+[...user] spread opertor. Different applications
+https://stackabuse.com/spread-operator-in-javascript/
