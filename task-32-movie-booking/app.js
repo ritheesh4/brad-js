@@ -1,7 +1,7 @@
-const seatContainer = document.querySelector('.seat-container');
-const movieList = document.getElementById('movie');
-let ticket = movieList.value;
-const seats = document.querySelectorAll('.row .seat:not(.booked)');
+const seatContainer = document.querySelector('.seat-container');// The container which has all seats
+const movieList = document.getElementById('movie');// list of movies
+let ticket = movieList.value; // ticket price
+const seats = document.querySelectorAll('.row .seat:not(.booked)'); // seats not booked yet
 updateUI()
 
 //Checking wether any seat has selected or not
@@ -12,8 +12,10 @@ seatContainer.addEventListener('click', (e) => {
     }
 });
 
+// Update ui based on local storage
 function updateUI() {
     
+    //updating seats
     const seatsSelected = JSON.parse(localStorage.getItem('seatsSelected'));
     console.log(seatsSelected)
     if (seatsSelected  !== null && seatsSelected .length > 0) {
@@ -24,7 +26,7 @@ function updateUI() {
         });
     }
 
-
+    // Updating moive lis dropdown
     const currentMovie = localStorage.getItem('movieIndex');
     if (currentMovie !== null) {
         movieList.selectedIndex = currentMovie;
