@@ -1,0 +1,10 @@
+-If we are not passing any value to this funciton at any call or point, here the below will load
+ that data which can be set as defalut data. ES6 feature.
+
+function updateDOM(providedData = data){
+    
+}
+
+
+[...user] spread opertor. Different applications
+https://stackabuse.com/spread-operator-in-javascript/
