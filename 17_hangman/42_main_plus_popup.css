@@ -74,7 +74,7 @@ h1 {
     width: 20px;
 }
 
-.popup-contaier {
+.popup-container {
     background-color: rgba(0,0,0,0.3);
     position: fixed;
     top: 0;
