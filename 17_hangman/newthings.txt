@@ -1,0 +1,9 @@
+The svg tag can be created for drawing in html
+- Example 
+  <svg height="250" width="200" class="figure-container">
+            <line x1="60" y1="20" x2="140" y2="20" />
+
+        </svg>
+
+        Apllying css properties to this class figure-container, the line can be drawn.
+        
