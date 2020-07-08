@@ -12,6 +12,8 @@ let currentIncome = 0;
 let currentExpense = 0;
 let inputAmount = 0;
 let balanceAmount = 0;
+let inputAmoutArray = [];
+let inputTextArray = [];
 
 // Add event listener to the delete button
 function deleteUpdate() {
@@ -19,13 +21,17 @@ function deleteUpdate() {
     historyItems.forEach(function (item) {
         item.addEventListener("click", function (e) {
             let removedAmount = Number(e.target.value);
+            console.log(e.target.parentNode.parentNode);
+            let child = (e.target.parentNode)
+            var parent = child.parentNode;
+            let index = Array.prototype.indexOf.call(parent.children, child);
+            console.log("index", index)
             e.target.parentNode.remove();
             inputAmount = removedAmount;
             updateAfterDelete(e)
         });
     })
 }
-
 
 // Update after delete
 function updateAfterDelete(e) {
@@ -51,24 +57,25 @@ function updateAfterDelete(e) {
     }
 }
 
-
-
-
-
-// Update the history after user input received
+// Update the history after user input received(UI)
 function updateHistory() {
     if (inputAmount >= 0) {
+        inputAmoutArray.push(inputAmount);
+        inputTextArray.push(transactionTitle.value)
+        historyData()
         list.innerHTML += `
     <li class=plus>
         ${transactionTitle.value} <span>+${formatMoney(inputAmount)}</span><button class="delete-btn" value ="${formatMoney(inputAmount)}">x</button></li>
     </li>    `;
     } else {
-
-        list.innerHTML += `<li class="minus">${transactionTitle.value}<span>${formatMoney(inputAmount)}</span><button class="delete-btn"  value ="${formatMoney(inputAmount)}">x</button></li>`
+        inputAmoutArray.push(inputAmount);
+        inputTextArray.push(transactionTitle.value);
+        historyData()
+        list.innerHTML += `
+        <li class="minus">${transactionTitle.value}<span>${formatMoney(inputAmount)}</span><button class="delete-btn"  value ="${formatMoney(inputAmount)}">x</button></li>
+        `;
     }
 }
-
-
 
 // Update the balance amount based on income and expense
 function updateBalance() {
@@ -84,19 +91,33 @@ function updateBalance() {
         balanceAmount = 0;
         balance.innerHTML = `<div>$${formatMoney(balanceAmount)}</div>`
     }
+}
 
-    // console.log("history length", historyItems.length)
-    console.log("currentincom", currentIncome)
-    console.log("currentexp", currentExpense)
-    // console.log("inputamount", inputAmount)
-    // console.log("balanzamnt", balanceAmount)
+let color = ["red", "green", "red", "blue"]
+
+// Update local storage
+function historyData() {
+    // historyItems = document.getElementById('list').querySelectorAll('li');
+    // console.log(historyItems)
+    // localStorage.setItem("colors", JSON.stringify(color));
+    // let storedCOlors = JSON.parse(localStorage.getItem("colors"));
+    // console.log(storedCOlors)
+
+    // historyItems.forEach(function (item) {
+    //     console.log(item);
+    // });
+
+    console.log(inputAmoutArray);
+    console.log(inputTextArray)
 
 }
+
 
 // Update the income based on user input
 function updateIncome(e) {
     e.preventDefault();
     inputAmount = Number(amount.value);
+    localStorage.setItem("InputAmout", inputAmount);
 
     if (inputAmount > 0) {
         currentIncome = currentIncome + inputAmount;
@@ -111,6 +132,9 @@ function updateIncome(e) {
         updateHistory();
     }
     deleteUpdate()
+
+    historyData()
+
 }
 
 //Format money
@@ -119,8 +143,7 @@ function formatMoney(money) {
 
 }
 
-// updateIncome()
-// console.log("history length", historyItems.length)
+// Event listener to check any transaction added
 addTrasactionBtn.addEventListener('click', updateIncome);
 
 
