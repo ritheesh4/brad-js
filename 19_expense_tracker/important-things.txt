@@ -1,0 +1,4 @@
+- If there is no argument to pass in the event listener for the function , function updateIncome(e) {
+    e.preventDefault();
+
+    do this to update the data. Otherwise, data will dissapear instantly.
