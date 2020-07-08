@@ -114,7 +114,7 @@ function historyData() {
     locatStorageVariables[3] = balanceAmount;
 
     localStorage.setItem("variables", JSON.stringify(locatStorageVariables));
-    console.log(locatStorageVariables)
+
 
 
 }
@@ -126,23 +126,31 @@ let retrievedVariable = localStorage.getItem("variables");
 if (retrievedTransaction) {
     let variableArray = JSON.parse(retrievedVariable);
     currentIncome = variableArray[0];
-    console.log(currentIncome)
     currentExpense = variableArray[1];
     inputAmount = variableArray[2];
     balanceAmount = variableArray[3];
+    
     updateBalance();
     income.innerHTML = `<div>$${formatMoney(currentIncome)}</div>`;
     expense.innerHTML = `<div>-$${formatMoney(currentExpense) * -1}</div>`;
-    console.log(balanceAmount)
 
     let transaction = JSON.parse(retrievedTransaction);
     let amountFromStorage = JSON.parse(retrievedAmount);
     transaction.forEach(function (transaction, index) {
         const eachAmount = amountFromStorage[index];
-        list.innerHTML += `
+        if(eachAmount >=0){
+            list.innerHTML += `
         <li class=plus>
-            ${transaction} <span>+${eachAmount}</span><button class="delete-btn" value ="${formatMoney(inputAmount)}">x</button></li>
+            ${transaction} <span>+${eachAmount}</span><button class="delete-btn" value ="${formatMoney(eachAmount)}">x</button></li>
         </li>    `
+
+        } else {
+            list.innerHTML += `
+        <li class=minus>
+            ${transaction} <span>${eachAmount}</span><button class="delete-btn" value ="${formatMoney(eachAmount)}">x</button></li>
+        </li>    `
+        }
+        
     }); deleteUpdate()
 } else {
     console.log("no data")
