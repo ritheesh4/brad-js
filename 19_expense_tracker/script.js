@@ -14,6 +14,7 @@ let inputAmount = 0;
 let balanceAmount = 0;
 let inputAmoutArray = [];
 let inputTextArray = [];
+let locatStorageVariables = [];
 
 // Add event listener to the delete button
 function deleteUpdate() {
@@ -21,11 +22,12 @@ function deleteUpdate() {
     historyItems.forEach(function (item) {
         item.addEventListener("click", function (e) {
             let removedAmount = Number(e.target.value);
-            console.log(e.target.parentNode.parentNode);
             let child = (e.target.parentNode)
             var parent = child.parentNode;
             let index = Array.prototype.indexOf.call(parent.children, child);
-            console.log("index", index)
+            inputAmoutArray.splice(index, 1);
+            inputTextArray.splice(index, 1);
+            historyData()
             e.target.parentNode.remove();
             inputAmount = removedAmount;
             updateAfterDelete(e)
@@ -54,6 +56,7 @@ function updateAfterDelete(e) {
         income.innerHTML = `<div>$${formatMoney(currentIncome)}</div>`;
         expense.innerHTML = `<div>-$${formatMoney(currentExpense) * -1}</div>`;
         updateBalance();
+        locatStorageVariables = '';
     }
 }
 
@@ -97,20 +100,54 @@ let color = ["red", "green", "red", "blue"]
 
 // Update local storage
 function historyData() {
-    // historyItems = document.getElementById('list').querySelectorAll('li');
-    // console.log(historyItems)
-    // localStorage.setItem("colors", JSON.stringify(color));
-    // let storedCOlors = JSON.parse(localStorage.getItem("colors"));
-    // console.log(storedCOlors)
 
-    // historyItems.forEach(function (item) {
-    //     console.log(item);
-    // });
+    localStorage.setItem("transaction", JSON.stringify(inputTextArray));
+    // console.log(inputTextArray);
+    localStorage.setItem("amount", JSON.stringify(inputAmoutArray));
+    // let currentIncome = 0;
+    // let currentExpense = 0;
+    // let inputAmount = 0;
+    // let balanceAmount = 0;
+    locatStorageVariables[0] = currentIncome;
+    locatStorageVariables[1] = currentExpense;
+    locatStorageVariables[2] = inputAmount;
+    locatStorageVariables[3] = balanceAmount;
 
-    console.log(inputAmoutArray);
-    console.log(inputTextArray)
+    localStorage.setItem("variables", JSON.stringify(locatStorageVariables));
+    console.log(locatStorageVariables)
+
 
 }
+
+let retrievedTransaction = localStorage.getItem("transaction");
+let retrievedAmount = localStorage.getItem("amount");
+let retrievedVariable = localStorage.getItem("variables");
+
+if (retrievedTransaction) {
+    let variableArray = JSON.parse(retrievedVariable);
+    currentIncome = variableArray[0];
+    console.log(currentIncome)
+    currentExpense = variableArray[1];
+    inputAmount = variableArray[2];
+    balanceAmount = variableArray[3];
+    updateBalance();
+    income.innerHTML = `<div>$${formatMoney(currentIncome)}</div>`;
+    expense.innerHTML = `<div>-$${formatMoney(currentExpense) * -1}</div>`;
+    console.log(balanceAmount)
+
+    let transaction = JSON.parse(retrievedTransaction);
+    let amountFromStorage = JSON.parse(retrievedAmount);
+    transaction.forEach(function (transaction, index) {
+        const eachAmount = amountFromStorage[index];
+        list.innerHTML += `
+        <li class=plus>
+            ${transaction} <span>+${eachAmount}</span><button class="delete-btn" value ="${formatMoney(inputAmount)}">x</button></li>
+        </li>    `
+    }); deleteUpdate()
+} else {
+    console.log("no data")
+}
+
 
 
 // Update the income based on user input
@@ -142,6 +179,8 @@ function formatMoney(money) {
     return money.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
 }
+
+
 
 // Event listener to check any transaction added
 addTrasactionBtn.addEventListener('click', updateIncome);
