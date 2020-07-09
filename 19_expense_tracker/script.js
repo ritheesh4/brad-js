@@ -16,7 +16,6 @@ let inputAmoutArray = [];
 let inputTextArray = [];
 let locatStorageVariables = [];
 
-
 // Add event listener to the delete button
 function deleteUpdate() {
     historyItems = document.getElementById('list').querySelectorAll('li');
@@ -33,7 +32,7 @@ function deleteUpdate() {
             inputAmount = removedAmount;
             updateAfterDelete(e)
         });
-    });   
+    });
 };
 
 // Update after delete
@@ -67,7 +66,7 @@ function updateAfterDelete(e) {
         expense.innerHTML = `<div>-$${currentExpense * -1}</div>`;
         updateBalance();
         historyData();
-    }    
+    }
 }
 
 // Update the history after user input received(UI)
@@ -87,7 +86,7 @@ function updateHistory() {
         list.innerHTML += `
         <li class="minus">${transactionTitle.value}<span>${inputAmount}</span><button class="delete-btn"  value ="${inputAmount}">x</button></li>
         `;
-    }    
+    }
 }
 
 // Update the balance amount based on income and expense
@@ -102,17 +101,15 @@ function updateBalance() {
     } else {
         balanceAmount = 0;
         balance.innerHTML = `<div>$${balanceAmount}</div>`
-    }    
+    }
 }
 
 // Update local storage
-
 let retrievedTransaction = localStorage.getItem("transaction");
 let retrievedAmount = localStorage.getItem("amount");
 let retrievedVariable = localStorage.getItem("variables");
 
 function loadLocalSotrage() {
-
     if (retrievedTransaction) {
         let variableArray = JSON.parse(retrievedVariable);
         inputTextArray = JSON.parse(retrievedTransaction);
@@ -121,7 +118,6 @@ function loadLocalSotrage() {
         currentExpense = variableArray[1];
         inputAmount = variableArray[2];
         balanceAmount = variableArray[3];
-
 
         updateBalance();
         income.innerHTML = `<div>$${currentIncome}</div>`;
@@ -147,23 +143,20 @@ function loadLocalSotrage() {
         }); deleteUpdate();
     } else {
         console.log("no data");
-    }    
+    }
 }
-
 loadLocalSotrage();
 
 function historyData() {
-
     localStorage.setItem("transaction", JSON.stringify(inputTextArray));
     localStorage.setItem("amount", JSON.stringify(inputAmoutArray));
     localStorage.setItem("InputAmout", inputAmount);
-
 
     locatStorageVariables[0] = currentIncome;
     locatStorageVariables[1] = currentExpense;
     locatStorageVariables[2] = inputAmount;
     locatStorageVariables[3] = balanceAmount;
-    localStorage.setItem("variables", JSON.stringify(locatStorageVariables));   
+    localStorage.setItem("variables", JSON.stringify(locatStorageVariables));
 }
 
 // Update the income based on user input
@@ -186,7 +179,6 @@ function updateIncome(e) {
     }
     deleteUpdate();
     historyData();
-    
 }
 
 // Event listener to check any transaction added
