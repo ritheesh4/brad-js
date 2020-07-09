@@ -15,7 +15,10 @@ let balanceAmount = 0;
 let inputAmoutArray = [];
 let inputTextArray = [];
 let locatStorageVariables = [];
+<<<<<<< HEAD
 
+=======
+>>>>>>> ccf1fa1ff16c01945023a890d791aed42e71b218
 
 // Add event listener to the delete button
 function deleteUpdate() {
@@ -29,6 +32,10 @@ function deleteUpdate() {
             let index = Array.prototype.indexOf.call(parent.children, child);
             inputAmoutArray.splice(index, 1);
             inputTextArray.splice(index, 1);
+<<<<<<< HEAD
+=======
+            historyData()
+>>>>>>> ccf1fa1ff16c01945023a890d791aed42e71b218
             e.target.parentNode.remove();
             inputAmount = removedAmount;
             updateAfterDelete(e)
@@ -66,8 +73,13 @@ function updateAfterDelete(e) {
         income.innerHTML = `<div>$${currentIncome}</div>`;
         expense.innerHTML = `<div>-$${currentExpense * -1}</div>`;
         updateBalance();
+<<<<<<< HEAD
         historyData();
     }    
+=======
+        locatStorageVariables = '';
+    }
+>>>>>>> ccf1fa1ff16c01945023a890d791aed42e71b218
 }
 
 // Update the history after user input received(UI)
@@ -106,6 +118,7 @@ function updateBalance() {
 }
 
 // Update local storage
+<<<<<<< HEAD
 
 let retrievedTransaction = localStorage.getItem("transaction");
 let retrievedAmount = localStorage.getItem("amount");
@@ -148,6 +161,63 @@ function loadLocalSotrage() {
     } else {
         console.log("no data");
     }    
+=======
+function historyData() {
+
+    localStorage.setItem("transaction", JSON.stringify(inputTextArray));
+    // console.log(inputTextArray);
+    localStorage.setItem("amount", JSON.stringify(inputAmoutArray));
+    // let currentIncome = 0;
+    // let currentExpense = 0;
+    // let inputAmount = 0;
+    // let balanceAmount = 0;
+    locatStorageVariables[0] = currentIncome;
+    locatStorageVariables[1] = currentExpense;
+    locatStorageVariables[2] = inputAmount;
+    locatStorageVariables[3] = balanceAmount;
+
+    localStorage.setItem("variables", JSON.stringify(locatStorageVariables));
+
+
+
+}
+
+let retrievedTransaction = localStorage.getItem("transaction");
+let retrievedAmount = localStorage.getItem("amount");
+let retrievedVariable = localStorage.getItem("variables");
+
+if (retrievedTransaction) {
+    let variableArray = JSON.parse(retrievedVariable);
+    currentIncome = variableArray[0];
+    currentExpense = variableArray[1];
+    inputAmount = variableArray[2];
+    balanceAmount = variableArray[3];
+    
+    updateBalance();
+    income.innerHTML = `<div>$${formatMoney(currentIncome)}</div>`;
+    expense.innerHTML = `<div>-$${formatMoney(currentExpense) * -1}</div>`;
+
+    let transaction = JSON.parse(retrievedTransaction);
+    let amountFromStorage = JSON.parse(retrievedAmount);
+    transaction.forEach(function (transaction, index) {
+        const eachAmount = amountFromStorage[index];
+        if(eachAmount >=0){
+            list.innerHTML += `
+        <li class=plus>
+            ${transaction} <span>+${eachAmount}</span><button class="delete-btn" value ="${formatMoney(eachAmount)}">x</button></li>
+        </li>    `
+
+        } else {
+            list.innerHTML += `
+        <li class=minus>
+            ${transaction} <span>${eachAmount}</span><button class="delete-btn" value ="${formatMoney(eachAmount)}">x</button></li>
+        </li>    `
+        }
+        
+    }); deleteUpdate()
+} else {
+    console.log("no data")
+>>>>>>> ccf1fa1ff16c01945023a890d791aed42e71b218
 }
 
 loadLocalSotrage();
@@ -165,6 +235,7 @@ function historyData() {
     locatStorageVariables[3] = balanceAmount;
     localStorage.setItem("variables", JSON.stringify(locatStorageVariables));   
 }
+
 
 // Update the income based on user input
 function updateIncome(e) {
@@ -188,6 +259,8 @@ function updateIncome(e) {
     historyData();
     
 }
+
+
 
 // Event listener to check any transaction added
 addTrasactionBtn.addEventListener('click', updateIncome);
