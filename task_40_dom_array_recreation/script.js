@@ -45,17 +45,18 @@ const doublingMoney = (e) => {
     </li>    `
         doubleArray[index] = doubleArray[index] * 2;
     });
+
+    cashArray = [...doubleArray];
 }
 
 // Show the millionaires only
 const showMillionaires = (e) => {
     e.preventDefault();
-    console.log("Showed millionaires");
-    indexOfMillionaires = 0;
 
+    indexOfMillionaires = 0;
     doubleArray.forEach(function (element, index) {
         if (element / 1000000 >= 1) {
-            console.log(element, index);
+
             millionairesWealth[indexOfMillionaires] = doubleArray[index];
             millionairesName[indexOfMillionaires] = userArray[index];
             indexOfMillionaires++;
@@ -64,18 +65,20 @@ const showMillionaires = (e) => {
         }
     });
 
-    console.log(millionairesName, millionairesWealth)
     eachUser = document.getElementById('userData').querySelectorAll('li');
     userList.innerHTML = '';
     e.preventDefault();
     millionairesName.forEach(function (element, index) {
-        console.log(index)
+
         userList.innerHTML += `
     <li class = "user">
     <div class="name">${millionairesName[index].name.first} ${userArray[index].name.last}</div>
     <div class="wealth">${formatMoney(millionairesWealth[index])}</div>
     </li>    `
     });
+
+    userArray = [...millionairesName];
+    cashArray = [...millionairesWealth];
 }
 
 
@@ -83,13 +86,41 @@ const showMillionaires = (e) => {
 // Sort rich first
 const sortRichFirst = (e) => {
     e.preventDefault();
-    console.log("sorted");
+    let arrayToSort = [];
+    for (let i = 0; i < userArray.length; i++) {
+        const user = {
+            name: `${userArray[i].name.first} ${userArray[i].name.last}`,
+            money: cashArray[i]
+        };
+        arrayToSort[i] = user
+    }
+
+    arrayToSort.sort((first, second) => second.money - first.money);
+    userList.innerHTML = ''
+    arrayToSort.forEach((item => {
+        userList.innerHTML += `
+        <li class = "user">
+        <div class="name">${item.name}</div>
+        <div class="wealth">${formatMoney(item.money)}</div>
+        </li>
+        `
+    }))
 }
 
 // Calculate the entire wealth
 const showEntireWealth = (e) => {
     e.preventDefault();
-    console.log("showed entire wealth");
+
+    let sum = 0;
+    cashArray.forEach(function (element) {
+        sum = sum + element;
+    });
+    userList.innerHTML += `
+    <li class="total-wealth">
+        <div style="flex: 1;">Total Wealth:</div>
+        <div>${formatMoney(sum)}</div>
+    </li>
+    `
 }
 
 // Format the randomly generated value in to money
@@ -97,8 +128,6 @@ const formatMoney = (number) => {
     return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
 }
-
-
 
 addUser.addEventListener('click', updateUser);
 doubleMoney.addEventListener('click', doublingMoney);

@@ -76,3 +76,10 @@ main .right .title{
 .name {
     flex: 1;
 }
+
+.total-wealth{
+    display: flex;
+    border-bottom: 1px solid black;
+    background-color: white;
+    padding: 5px;
+}
