@@ -198,3 +198,73 @@ Error handlers
 #Video 90
 - Symbols are not enumerable in for ...in
 - Symbols are ignored by JSON.stringifys
+
+
+
+
+
+
+
+
+
+
+
+1. Fundamentals
+
+1.1 Variables
+-------------
+1.1.1. Array.push(item) : To add (push) elements to array.
+   const number = [1,2,3,4]
+   number.push(6);
+
+1.1.2 Object : Key value pairs
+	const person ={
+    	name:'John',
+        age:30
+        }
+	
+	To change the values
+	person.name ="Allen";
+	person.age ="32";
+
+2. Data types
+-----------
+2.1 typeof : Used to find the datatype.
+    let test = 2;
+    console.log(typeof test);
+
+3. Type conversion
+-----------------
+
+3.1 String(item) and (item).toString() : To convert to string
+    
+    let val = String(555); 555 number stored into val as a string
+3.2 Number(item) , parseInt(item) and parseFloat(item) : To convert to number
+
+    let val = Number('hello');
+    let val = parseInt('100.30');
+    let val = parseFloat('100.30);
+3.3 Special case
+    const value1 = String(5); 
+    const value2 = 6;
+    const sum =Number(value1 + value2);
+
+    console.log(sum);//56
+    console.log(typeof sum);// Number
+
+4. Math Object
+--------------
+  val = Math.PI;
+  val = Math.E;
+  val = Math.round(2.4); 2.4 rounds to 2, 2.5 rounds to 3.
+  val = Math.ceil(2.4); 2.1 rounds to 3. 2.0 rounds to 2.
+  val = Math.floor(2.8);
+  val = Math.sqrt(64);
+  val = Math.abs(-3);
+  val = Math.pow(8,2);
+  val = Math.min(2,33,4,1,55,3,6,-2);
+  val = Math.max(2,33,4,1,55,3,6,-2);
+  val = Math.random();
+  val = Math.floor(Math.random() * 20 + 1);
+  console.log(val);
+
