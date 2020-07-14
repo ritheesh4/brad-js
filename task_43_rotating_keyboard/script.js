@@ -27,9 +27,8 @@ const taped = () => {
             tap++;
         } else {
             console.log("key selected");
-            keySelected();
-            clearAllTimeouts();
-            horizontalSelection();
+            keySelected();          
+            
         }
     }
     tapBtn.style.backgroundColor = "red";
@@ -119,6 +118,8 @@ const keySelected = () => {
             catch {
                 console.log("end reached");
             }
+            clearAllTimeouts();
+            horizontalSelection();
             break;
         case 'down':
             try {
@@ -134,6 +135,8 @@ const keySelected = () => {
             catch {
                 console.log("end reached");
             }
+            clearAllTimeouts();
+            horizontalSelection();
             break;
         case 'enter':
             textBox.querySelector('p').innerHTML += `<br>`;
