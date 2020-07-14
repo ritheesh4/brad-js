@@ -1,6 +1,8 @@
 const keyboard = document.getElementById('keyboard');
 const tapBtn = document.getElementById('tap-button');
 const selectedRw = document.getElementsByClassName('selecting');
+const selectingKey = document.getElementsByClassName('selecting-key');
+const textBox = document.getElementById('text-box');
 
 
 let timeouts = [];
@@ -8,13 +10,21 @@ let tap = 0;
 
 //Tap function
 const taped = () => {
-    tap++;
-    if (tap > 1) {
-        console.log(tap)
-        clearAllTimeouts();
-        horizontalSelection();
+    if (tap === 0) {
+        rotatingSection();
+        tap++;
     } else {
-        rotatingSection()
+        if (tap === 1) {
+            console.log(tap)
+            clearAllTimeouts();
+            horizontalSelection();
+            tap++;
+        } else {
+            console.log("key selected");
+            keySelected();
+            clearAllTimeouts();
+            horizontalSelection();
+        }
     }
 }
 
@@ -57,10 +67,10 @@ const horizontalSelection = () => {
 
     let selectedRow = [].slice.call(selectedRw[0].children);
     let keyState = true;
-    addClass(selectedRow,keyState);
-   
+    addClass(selectedRow, keyState);
+
     let horizontal = setInterval(() => addClass(selectedRow, keyState), 12000);
-    setTimeout(() => { clearInterval(horizontal);}, 25000);
+    setTimeout(() => { clearInterval(horizontal); }, 25000);
 }
 
 
@@ -73,5 +83,12 @@ const clearAllTimeouts = () => {
     }
 }
 
+//Capture the selected key
+const keySelected = () => {
+    textBox.querySelector('p').innerHTML += `${selectingKey[0].innerHTML}`;
+    
+}
 
+
+// Detect when tapped
 tapBtn.addEventListener('click', taped);

@@ -49,7 +49,9 @@ section ul li{
     background-color: yellow;
 }
 
-main .text-box{
+#text-box{
+    display: flex;
+    padding: 4px;
     width: 200px;
     background-color: rgb(221, 214, 214);
     border-radius: 5px;
@@ -69,3 +71,19 @@ main .tap-button{
 }
 
 
+ /* blinking cursor */
+ .cursor {
+    background: rgb(25, 110, 25);
+    line-height: 17px;
+    margin-left: 3px;
+    -webkit-animation: blink 0.8s infinite;
+    width: 7px;
+    height: 15px;
+  }
+  
+  @-webkit-keyframes blink {
+    0% {background: #222}
+    50% {background: rgb(18, 133, 18)}
+    100% {background: #222}
+  }
+  
