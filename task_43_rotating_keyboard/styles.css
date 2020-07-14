@@ -13,6 +13,13 @@ body{
     opacity: 1;
 }
 
+.title{
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
 .keyboard{
     margin-bottom: 20px;
 }

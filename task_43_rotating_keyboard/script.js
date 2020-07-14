@@ -12,6 +12,7 @@ let tap = 0;
 
 // Tap function
 const taped = () => {
+  
     if (tap === 0) {
         rotatingSection();
         tap++;
@@ -28,6 +29,8 @@ const taped = () => {
             horizontalSelection();
         }
     }
+    tapBtn.style.backgroundColor = "red";
+    setTimeout(()=>{tapBtn.style.backgroundColor = "rgb(113, 212, 113)";},500)
 }
 
 // Rotating vertical selection;
