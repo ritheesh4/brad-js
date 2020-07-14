@@ -16,152 +16,145 @@ let smallLetterFlag = 0;
 // Tap function
 const taped = () => {
 
-	if (tap === 0) {
-		rotatingSection();
-		tap++;
-	} else {
-		if (tap === 1) {
-			console.log(tap)
-			clearAllTimeouts();
-			horizontalSelection();
-			tap++;
-		} else {
-			console.log("key selected");
-			keySelected();
-			clearAllTimeouts();
-			horizontalSelection();
-		}
-	}
-	tapBtn.style.backgroundColor = "red";
-	tapBtn.style.color = "white";
-	setTimeout(() => {
-		tapBtn.style.backgroundColor = "rgb(113, 212, 113)";
-		tapBtn.style.color = "black";
-	}, 500)
+    if (tap === 0) {
+        rotatingSection();
+        tap++;
+    } else {
+        if (tap === 1) {
+            console.log(tap)
+            clearAllTimeouts();
+            horizontalSelection();
+            tap++;
+        } else {
+            console.log("key selected");
+            keySelected();
+            clearAllTimeouts();
+            horizontalSelection();
+        }
+    }
+    tapBtn.style.backgroundColor = "red";
+    tapBtn.style.color = "white";
+    setTimeout(() => { tapBtn.style.backgroundColor = "rgb(113, 212, 113)"; tapBtn.style.color = "black"; }, 500)
 }
 
 // Rotating vertical selection;
 const rotatingSection = () => {
-	let keyRow = [].slice.call(keyboard.children);
+    let keyRow = [].slice.call(keyboard.children);
 
-	addClass(keyRow);
-	let verticalSelection = setInterval(() => addClass(keyRow), 6000);
-	setTimeout(() => {
-		clearInterval(verticalSelection);
-		tap = 0;
-	}, 13000);
+    addClass(keyRow);
+    let verticalSelection = setInterval(() => addClass(keyRow), 6000);
+    setTimeout(() => { clearInterval(verticalSelection); tap = 0; }, 13000);
 }
 
 // Add and remove the color to the selected row
 const addClass = (keyRow, keyState) => {
 
-	if (keyState) {
-		try {
-			keyRow.forEach(function (element, index) {
-				setTimeout(function () {
-					element.classList.add("selecting-key");
-					setTimeout(function () {
-						element.classList.remove("selecting-key");
-					}, 500);
-				}, index * 1000);
-			});
-		} catch (err) {
-			console.log("Error while adding or removing class on the key")
-		}
-	} else {
-		try {
-			keyRow.forEach(function (element, index) {
-				setTimeout(function () {
-					element.classList.add("selecting");
-					setTimeout(function () {
-						element.classList.remove("selecting");
-					}, 500);
-				}, index * 1000);
-			});
-		} catch {
-			console.log("Error while adding or removing class in the row")
-		}
-	}
+    if (keyState) {
+        try {
+            keyRow.forEach(function (element, index) {
+                setTimeout(function () {
+                    element.classList.add("selecting-key");
+                    setTimeout(function () {
+                        element.classList.remove("selecting-key");
+                    }, 500);
+                }, index * 1000);
+            });
+        }
+        catch (err) {
+            console.log("Error while adding or removing class on the key")
+        }
+    } else {
+        try {
+            keyRow.forEach(function (element, index) {
+                setTimeout(function () {
+                    element.classList.add("selecting");
+                    setTimeout(function () {
+                        element.classList.remove("selecting");
+                    }, 500);
+                }, index * 1000);
+            });
+        } catch{
+            console.log("Error while adding or removing class in the row")
+        }
+    }
 }
 
 // Horizontal selection for keys
 const horizontalSelection = () => {
-	try {
-		let selectedRow = [].slice.call(selectedRw[0].children);
-		let keyState = true;
-		addClass(selectedRow, keyState);
+    try {
+        let selectedRow = [].slice.call(selectedRw[0].children);
+        let keyState = true;
+        addClass(selectedRow, keyState);
 
-		let horizontal = setInterval(() => addClass(selectedRow, keyState), 12000);
-		setTimeout(() => {
-			clearInterval(horizontal);
-		}, 37000);
-	} catch {
-		console.log("error in the horizontal selection function")
-	}
+        let horizontal = setInterval(() => addClass(selectedRow, keyState), 12000);
+        setTimeout(() => { clearInterval(horizontal); }, 37000);
+    } catch {
+        console.log("error in the horizontal selection function")
+    }
 }
 
 
 // Clear all timeouts
 const clearAllTimeouts = () => {
-	let highestTimeoutId = setTimeout(";");
+    let highestTimeoutId = setTimeout(";");
 
-	for (let i = 0; i < highestTimeoutId; i++) {
-		clearTimeout(i);
-	}
+    for (let i = 0; i < highestTimeoutId; i++) {
+        clearTimeout(i);
+    }
 }
 
 // Capture the selected key
 const keySelected = () => {
-	switch (selectingKey[0].getAttribute('id')) {
-		case 'up':
-			try {
-				let element = selectedRw[0].previousElementSibling;
-				if (element) {
-					selectingKey[0].classList.remove("selecting-key");
-					selectedRw[0].classList.remove("selecting")
-					element.classList.add("selecting");
-					horizontalSelection()
-				}
-			} catch {
-				console.log("end reached");
-			}
-			break;
-		case 'down':
-			try {
-				let element = selectedRw[0].nextElementSibling;
-				if (element) {
-					selectingKey[0].classList.remove("selecting-key");
-					selectedRw[0].classList.remove("selecting")
-					element.classList.add("selecting");
-					horizontalSelection()
-				}
+    switch (selectingKey[0].getAttribute('id')) {
+        case 'up':
+            try {
+                let element = selectedRw[0].previousElementSibling;
+                if (element) {
+                    selectingKey[0].classList.remove("selecting-key");
+                    selectedRw[0].classList.remove("selecting")
+                    element.classList.add("selecting");
+                    horizontalSelection()
+                }
+            }
+            catch {
+                console.log("end reached");
+            }
+            break;
+        case 'down':
+            try {
+                let element = selectedRw[0].nextElementSibling;
+                if (element) {
+                    selectingKey[0].classList.remove("selecting-key");
+                    selectedRw[0].classList.remove("selecting")
+                    element.classList.add("selecting");
+                    horizontalSelection()
+                }
 
-			} catch {
-				console.log("end reached");
-			}
-			break;
-		case 'enter':
-			textBox.querySelector('p').innerHTML += `<br>`;
-			selectingKey[0].classList.remove("selecting-key");
-			break;
-		case 'space':
-			textBox.querySelector('p').innerHTML += `  `;
-			selectingKey[0].classList.remove("selecting-key");
-			break;
-		case 'delete':
-			textBox.querySelector('p').innerHTML = textBox.querySelector('p').innerHTML.replace(/.$/, '');
-			selectingKey[0].classList.remove("selecting-key");
-			break;
-		case 'smallLetter':
-			smallLetterFlag = !smallLetterFlag
-			selectingKey[0].classList.remove("selecting-key");
-			break;
-		default:
-			textBox.querySelector('p').innerHTML += `${selectingKey[0].innerHTML}`;
-			selectingKey[0].classList.remove("selecting-key");
-
-
-	}
+            }
+            catch {
+                console.log("end reached");
+            }
+            break;
+        case 'enter':
+            textBox.querySelector('p').innerHTML += `<br>`;
+            selectingKey[0].classList.remove("selecting-key");
+            break;
+        case 'space':
+            textBox.querySelector('p').innerHTML += `  `;
+            selectingKey[0].classList.remove("selecting-key");
+            break;
+        case 'delete':
+            textBox.querySelector('p').innerHTML = textBox.querySelector('p').innerHTML.replace(/.$/, '');
+            selectingKey[0].classList.remove("selecting-key");
+            break;
+        case 'smallLetter':
+            smallLetterFlag = !smallLetterFlag
+            selectingKey[0].classList.remove("selecting-key");
+            break;
+        default:
+            textBox.querySelector('p').innerHTML += `${selectingKey[0].innerHTML}`;
+            selectingKey[0].classList.remove("selecting-key");
+    }
 }
 
 // Detect when tapped on the button
