@@ -10,6 +10,7 @@ body{
     justify-content: center;
     height: 100vh;
     background-color: rgb(53, 53, 53);
+    opacity: 1;
 }
 
 .keyboard{
@@ -42,7 +43,7 @@ section ul li{
 
 .selecting-key{
     transition: background-color 0.2s ease;
-    background-color: rgb(19, 165, 19);
+    background-color: rgb(223, 53, 53);
 }
 
 .key-selection{
@@ -53,7 +54,7 @@ section ul li{
     display: flex;
     padding: 4px;
     width: 200px;
-    background-color: rgb(221, 214, 214);
+    background-color: rgb(207, 201, 201);
     border-radius: 5px;
     height: 100px;
     margin:auto;
@@ -70,23 +71,30 @@ main .tap-button{
     
 }
 
-#down-arrow {
+#down {
     transform: rotate(180deg);
 }
 
+
+
 /* blinking cursor */
 .cursor {
-    background: rgb(25, 110, 25);
+    background: rgb(255, 255, 255);
     line-height: 17px;
     margin-left: 3px;
     -webkit-animation: blink 0.8s infinite;
     width: 7px;
     height: 15px;
 }
+
+.enter-btn{
+    width: 14px;
+    height: 12px;
+}
   
 @-webkit-keyframes blink {
-    0% {background: #222}
-    50% {background: rgb(18, 133, 18)}
+    0% {background: rgb(255, 255, 255)}
+    50% {background: rgb(0, 0, 0)}
     100% {background: #222}
  
 }
