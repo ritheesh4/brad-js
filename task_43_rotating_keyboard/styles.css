@@ -15,6 +15,7 @@ body{
 .keyboard{
     margin-bottom: 20px;
 }
+
 section ul {
     display: flex;
     flex-direction: row;
@@ -26,15 +27,22 @@ section ul li{
     margin: 2px 2px;
     height: 35px;
     text-align: center;
+    border-radius: 4px;
     font-size: 25px;
-    background-color: #98c6d6;
     transition: background-color 0.5s ease;
+    background-color: #98c6d6;
+    
 }
 
 .selecting{
     transition: background-color 0.2s ease;
     background-color: yellow;
     
+}
+
+.selecting-key{
+    transition: background-color 0.2s ease;
+    background-color: rgb(19, 165, 19);
 }
 
 .key-selection{
@@ -44,6 +52,7 @@ section ul li{
 main .text-box{
     width: 200px;
     background-color: rgb(221, 214, 214);
+    border-radius: 5px;
     height: 100px;
     margin:auto;
     margin-bottom: 10px;
@@ -54,6 +63,8 @@ main .tap-button{
     height: 80px;
     border-radius: 100px;
     border: none;
+    background-color: rgb(113, 212, 113);
+    font-weight: 600;
     
 }
 

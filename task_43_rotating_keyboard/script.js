@@ -1,40 +1,76 @@
 const keyboard = document.getElementById('keyboard');
 const tapBtn = document.getElementById('tap-button');
-const selectedRow = document.getElementsByClassName('selecting');
+const selectedRw = document.getElementsByClassName('selecting');
+
 
 let timeouts = [];
 let tap = 0;
 
 //Tap function
-function taped() {
+const taped = () => {
     tap++;
     if (tap > 1) {
-
+        console.log(tap)
+        clearAllTimeouts();
+        horizontalSelection();
     } else {
         rotatingSection()
     }
 }
 
 // Rotating vertical selection;
-function rotatingSection() {
+const rotatingSection = () => {
     let keyRow = [].slice.call(keyboard.children);
-    
+
     addClass(keyRow);
     let verticalSelection = setInterval(() => addClass(keyRow), 6000);
-    setTimeout(() => { clearInterval(verticalSelection); tap = 0; }, 9000);
+    setTimeout(() => { clearInterval(verticalSelection); tap = 0; }, 13000);
 }
 
 // Add and remove the color to the selected row
-function addClass(keyRow) {
-    keyRow.forEach(function (element, index) {
-        setTimeout(function () {
-            element.classList.add("selecting");
-            setTimeout(function () {
-                element.classList.remove("selecting");
-            }, 500)
+const addClass = (keyRow, keyState) => {
 
-        }, index * 1000);
-    });
+    if (keyState) {
+        keyRow.forEach(function (element, index) {
+            setTimeout(function () {
+                element.classList.add("selecting-key");
+                setTimeout(function () {
+                    element.classList.remove("selecting-key");
+                }, 500);
+            }, index * 1000);
+        });
+    } else {
+        keyRow.forEach(function (element, index) {
+            setTimeout(function () {
+                element.classList.add("selecting");
+                setTimeout(function () {
+                    element.classList.remove("selecting");
+                }, 500);
+            }, index * 1000);
+        });
+    }
+
+}
+
+// Horizontal selection for keys
+const horizontalSelection = () => {
+
+    let selectedRow = [].slice.call(selectedRw[0].children);
+    let keyState = true;
+    addClass(selectedRow,keyState);
+   
+    let horizontal = setInterval(() => addClass(selectedRow, keyState), 12000);
+    setTimeout(() => { clearInterval(horizontal);}, 25000);
+}
+
+
+// Clear all timeouts
+const clearAllTimeouts = () => {
+    let highestTimeoutId = setTimeout(";");
+
+    for (let i = 0; i < highestTimeoutId; i++) {
+        clearTimeout(i);
+    }
 }
 
 
