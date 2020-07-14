@@ -6,13 +6,16 @@ const textBox = document.getElementById('text-box');
 const upBtn = document.querySelector('#up');
 const downBtn = document.querySelector('#down');
 const enterBtn = document.querySelector('#enter');
+const spaceBtn = document.querySelector('#space');
+const smallLetterBtn = document.querySelector('#smallLetter')
 
 let timeouts = [];
 let tap = 0;
+let smallLetterFlag = 0;
 
 // Tap function
 const taped = () => {
-  
+
     if (tap === 0) {
         rotatingSection();
         tap++;
@@ -30,7 +33,8 @@ const taped = () => {
         }
     }
     tapBtn.style.backgroundColor = "red";
-    setTimeout(()=>{tapBtn.style.backgroundColor = "rgb(113, 212, 113)";},500)
+    tapBtn.style.color = "white";
+    setTimeout(() => { tapBtn.style.backgroundColor = "rgb(113, 212, 113)";  tapBtn.style.color = "black"; }, 500)
 }
 
 // Rotating vertical selection;
@@ -106,49 +110,58 @@ const keySelected = () => {
     if (selectingKey[0].getAttribute('id') == 'up') {
         try {
             let element = selectedRw[0].previousElementSibling;
-            selectingKey[0].classList.remove("selecting-key");
-            selectedRw[0].classList.remove("selecting")
-            element.classList.add("selecting");
-            horizontalSelection()
+            if (element) {
+                selectingKey[0].classList.remove("selecting-key");
+                selectedRw[0].classList.remove("selecting")
+                element.classList.add("selecting");
+                horizontalSelection()
+            }
         }
         catch {
             console.log("end reached");
         }
-
 
     } else if (selectingKey[0].getAttribute('id') == 'down') {
         try {
             let element = selectedRw[0].nextElementSibling;
-            selectingKey[0].classList.remove("selecting-key");
-            selectedRw[0].classList.remove("selecting")
-            element.classList.add("selecting");
-            horizontalSelection()
+            if (element) {
+                selectingKey[0].classList.remove("selecting-key");
+                selectedRw[0].classList.remove("selecting")
+                element.classList.add("selecting");
+                horizontalSelection()
+            }
+
         }
         catch {
             console.log("end reached");
         }
-
-
-
-
 
     } else if (selectingKey[0].getAttribute('id') == 'enter') {
         textBox.querySelector('p').innerHTML += `<br>`;
         selectingKey[0].classList.remove("selecting-key");
 
-    } else {
+    } else if (selectingKey[0].getAttribute('id') == 'space') {
+        textBox.querySelector('p').innerHTML += `  `;
+        selectingKey[0].classList.remove("selecting-key");
+
+    } else if (selectingKey[0].getAttribute('id') == 'delete') {
+        textBox.querySelector('p').innerHTML = textBox.querySelector('p').innerHTML.replace(/.$/, '');
+        selectingKey[0].classList.remove("selecting-key");
+
+    } 
+    //  else if (selectingKey[0].getAttribute('id') == 'smallLetter') {
+    //     smallLetterFlag = !smallLetterFlag 
+    //     selectingKey[0].classList.remove("selecting-key");
+
+    // } 
+     else {
         textBox.querySelector('p').innerHTML += `${selectingKey[0].innerHTML}`;
         selectingKey[0].classList.remove("selecting-key");
     }
 }
 
-// Jump to the top row 
-const jumpUpward = () => {
-    console.log("up button clicked")
-}
-
 // Detect when tapped on the button
-tapBtn.addEventListener('click', taped);
+// tapBtn.addEventListener('click', taped);
 
 // Detect when tapped on the screen
-// document.addEventListener("click", taped);
+document.addEventListener("click", taped);
