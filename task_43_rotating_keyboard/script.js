@@ -86,6 +86,8 @@ const clearAllTimeouts = () => {
 //Capture the selected key
 const keySelected = () => {
     textBox.querySelector('p').innerHTML += `${selectingKey[0].innerHTML}`;
+ 
+    selectingKey[0].classList.remove("selecting-key");
     
 }
 

@@ -70,20 +70,23 @@ main .tap-button{
     
 }
 
+#down-arrow {
+    transform: rotate(180deg);
+}
 
- /* blinking cursor */
- .cursor {
+/* blinking cursor */
+.cursor {
     background: rgb(25, 110, 25);
     line-height: 17px;
     margin-left: 3px;
     -webkit-animation: blink 0.8s infinite;
     width: 7px;
     height: 15px;
-  }
+}
   
-  @-webkit-keyframes blink {
+@-webkit-keyframes blink {
     0% {background: #222}
     50% {background: rgb(18, 133, 18)}
     100% {background: #222}
-  }
-  
+ 
+}
