@@ -7,11 +7,13 @@ const upBtn = document.querySelector('#up');
 const downBtn = document.querySelector('#down');
 const enterBtn = document.querySelector('#enter');
 const spaceBtn = document.querySelector('#space');
-const smallLetterBtn = document.querySelector('#smallLetter')
+const smallLetterBtn = document.querySelector('#smallLetter');
 
 let timeouts = [];
 let tap = 0;
 let smallLetterFlag = 0;
+let verticalSelectionTime = 6000;
+let horizontalSelectionTime = 12000;
 
 // Tap function
 const taped = () => {
@@ -25,8 +27,8 @@ const taped = () => {
             horizontalSelection();
             tap++;
         } else {
-            keySelected();          
-            
+            keySelected();
+
         }
     }
     tapBtn.style.backgroundColor = "red";
@@ -83,8 +85,8 @@ const horizontalSelection = () => {
         let keyState = true;
         addClass(selectedRow, keyState);
 
-        let horizontal = setInterval(() => addClass(selectedRow, keyState), 12000);
-        setTimeout(() => { clearInterval(horizontal); }, 37000);
+        let horizontal = setInterval(() => addClass(selectedRow, keyState), horizontalSelectionTime);
+        // setTimeout(() => { clearInterval(horizontal); }, 37000);
     } catch {
         console.log("error in the horizontal selection function")
     }
@@ -102,65 +104,97 @@ const clearAllTimeouts = () => {
 
 // Capture the selected key
 const keySelected = () => {
-    try{
-    switch (selectingKey[0].getAttribute('id')) {
-        case 'up':
-            try {
-                let element = selectedRw[0].previousElementSibling;
-                if (element) {
-                    selectingKey[0].classList.remove("selecting-key");
-                    selectedRw[0].classList.remove("selecting")
-                    element.classList.add("selecting");
-                    horizontalSelection()
+    try {
+        switch (selectingKey[0].getAttribute('id')) {
+            case 'up':
+                try {
+                    let element = selectedRw[0].previousElementSibling;
+                    if (element) {
+                        selectingKey[0].classList.remove("selecting-key");
+                        selectedRw[0].classList.remove("selecting")
+                        element.classList.add("selecting");
+                        horizontalSelection()
+                    }
                 }
-            }
-            catch {
-                console.log("end reached");
-            }
-            clearAllTimeouts();
-            horizontalSelection();
-            break;
-        case 'down':
-            try {
-                let element = selectedRw[0].nextElementSibling;
-                if (element) {
-                    selectingKey[0].classList.remove("selecting-key");
-                    selectedRw[0].classList.remove("selecting")
-                    element.classList.add("selecting");
-                    horizontalSelection()
+                catch {
+                    console.log("end reached");
+                }
+                clearAllTimeouts();
+                horizontalSelection();
+                break;
+            case 'down':
+                try {
+                    let element = selectedRw[0].nextElementSibling;
+                    if (element) {
+                        selectingKey[0].classList.remove("selecting-key");
+                        selectedRw[0].classList.remove("selecting")
+                        element.classList.add("selecting");
+                        horizontalSelection()
+                    }
+
+                }
+                catch {
+                    console.log("end reached");
+                }
+                clearAllTimeouts();
+                horizontalSelection();
+                break;
+            case 'enter':
+                textBox.querySelector('span').innerHTML += `<br>`;
+                selectingKey[0].classList.remove("selecting-key");
+                break;
+            case 'space':
+                textBox.querySelector('span').innerHTML += `  `;
+                selectingKey[0].classList.remove("selecting-key");
+                break;
+            case 'delete':
+                textBox.querySelector('span').innerHTML = textBox.querySelector('span').innerHTML.replace(/.$/, '');
+                selectingKey[0].classList.remove("selecting-key");
+                break;
+            case 'smallLetter':
+                smallLetterFlag = !smallLetterFlag
+                changeLetterCase(smallLetterFlag);
+                if (smallLetterFlag) {
+                    selectingKey[0].classList.add("caseChange");
+                } else {
+                    selectingKey[0].classList.remove("caseChange");
                 }
 
-            }
-            catch {
-                console.log("end reached");
-            }
-            clearAllTimeouts();
-            horizontalSelection();
-            break;
-        case 'enter':
-            textBox.querySelector('span').innerHTML += `<br>`;
-            selectingKey[0].classList.remove("selecting-key");
-            break;
-        case 'space':
-            textBox.querySelector('span').innerHTML += `  `;
-            selectingKey[0].classList.remove("selecting-key");
-            break;
-        case 'delete':
-            textBox.querySelector('span').innerHTML = textBox.querySelector('span').innerHTML.replace(/.$/, '');
-            selectingKey[0].classList.remove("selecting-key");
-            break;
-        case 'smallLetter':
-            smallLetterFlag = !smallLetterFlag
-            selectingKey[0].classList.remove("selecting-key");
-            break;
-        default:
-            textBox.querySelector('span').innerHTML += `${selectingKey[0].innerHTML}`;
-            selectingKey[0].classList.remove("selecting-key");
-    }}
+                selectingKey[0].classList.remove("selecting-key");
+
+                break;
+            default:
+                textBox.querySelector('span').innerHTML += `${selectingKey[0].innerHTML}`;
+                selectingKey[0].classList.remove("selecting-key");
+        }
+    }
     catch {
         console.log("error to get id attribute")
     }
 }
+
+// Change the case of the letter
+const changeLetterCase = (smallLetterFlag) => {
+    let result = selectedRw[0].parentElement;
+    let rowParent = [].slice.call(result.children);
+
+    rowParent.forEach(function (ul) {
+        let result = [].slice.call(ul.children);
+        result.forEach(function (li) {
+            if (li.innerHTML.substring(0, 1) !== '<') {
+                if (li.innerHTML.toUpperCase() != li.innerHTML.toLowerCase()) {
+                    if (smallLetterFlag) {
+                        li.innerHTML = `${li.innerHTML.toLowerCase()}`
+                    } else {
+                        li.innerHTML = `${li.innerHTML.toUpperCase()}`
+                    }
+                }
+            }
+        });
+    });
+}
+
+
 
 // Detect when tapped on the button
 // tapBtn.addEventListener('click', taped);
