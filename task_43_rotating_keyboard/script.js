@@ -2,7 +2,6 @@
  vertically and will wait for user input to select which row that user wishes to get enter. Second tap
  is considered as the user has selected a row and the selection from there will be for the keys. Next tap will
  for the user to select which key or which option in that row to execute.*/
-
 const keyboard = document.getElementById('keyboard');
 const tapBtn = document.getElementById('tap-button');
 const selectedRw = document.getElementsByClassName('selecting');
@@ -25,31 +24,62 @@ let selectionTimeConfig = 1; // Enter the selection time in seconds
 
 // Tap function enables row selection of the keyboard. 
 const taped = () => {
-    console.log("tapped")
     if (tap === 0) {
         rotatingSection();  // Trigers the vertical selection
         tap++;
+        previousTap = tap;
     } else {
         if (tap === 1) {
             clearAllTimeouts();
             horizontalSelection(); // Trigers the horizontal selection 
             tap++;
+            previousTap = tap;
         } else {
+            previousTap = tap;
             keySelected(); // Execute the corresponding action for the selected key
         }
     }
     tapBtn.style.backgroundColor = "hsl(98, 100%, 55%)";
     tapBtn.style.color = "white";
-    setTimeout(() => { tapBtn.style.border = "2px solid hsl(98, 100%, 55%)"; tapBtn.style.backgroundColor = "transparent"; tapBtn.style.color = "rgb(126, 125, 125)"; }, 500)
+
+    setTimeout(() => {
+        tapBtn.style.border = "2px solid hsl(98, 100%, 55%)";
+        tapBtn.style.backgroundColor = "transparent";
+        tapBtn.style.color = "rgb(126, 125, 125)";
+    }, 500);
 }
 
 // Rotating vertical selection;
 const rotatingSection = () => {
     let keyRow = [].slice.call(keyboard.children);
-
     addClass(keyRow);
-    let verticalSelection = setInterval(() => addClass(keyRow), selectionTimeConfig * 6000);
-    setTimeout(() => { clearInterval(verticalSelection); tap = 0; }, (selectionTimeConfig * 5000 * maxVerticalRotation));
+    let verticalSelection = setInterval(() => addClass(keyRow), (selectionTimeConfig * 6000));
+    // setTimeout(() => {
+    //     if (previousTap === tap) {
+    //         clearInterval(verticalSelection);
+    //         tap = 0;
+    //         previousTap = 0;
+    //     }
+    // }, (selectionTimeConfig * 5999 * maxVerticalRotation));
+}
+
+// Horizontal selection for keys
+const horizontalSelection = () => {
+    try {
+        selectingKey[0].classList.remove("selected-color");
+    } catch (err) { };
+    try {
+        let selectedRow = [].slice.call(selectedRw[0].children);
+        let keyState = true;
+        addClass(selectedRow, keyState);
+        let horizontal = setInterval(() => addClass(selectedRow, keyState), (selectionTimeConfig * 12000));
+        // setTimeout(() => {
+        //     if (previousTap === tap) {
+        //         clearInterval(horizontal);
+        //         rotatingSection();
+        //     }
+        // }, (selectionTimeConfig * 11999 * maxHorizontalRotation));
+    } catch (err) { };
 }
 
 // Add and remove the color to the selected row
@@ -62,15 +92,12 @@ const addClass = (keyRow, keyState) => {
                     setTimeout(function () {
                         element.classList.remove("selected-color");
                         element.classList.remove("selecting-key");
-
                     }, 1000 * selectionTimeConfig);
                 }, index * 1000 * selectionTimeConfig);
             });
         }
-        catch (err) {
-            console.log("Error while adding or removing class on the key")
-        }
-    } else {  // Responsible for selection of row
+        catch (err) { };
+    } else {  // Responsible for selection of rows
         try {
             keyRow.forEach(function (element, index) {
                 setTimeout(function () {
@@ -81,24 +108,7 @@ const addClass = (keyRow, keyState) => {
                     }, 1000 * selectionTimeConfig);
                 }, index * 1000 * selectionTimeConfig);
             });
-        } catch{
-            console.log("Error while adding or removing class in the row")
-        }
-    }
-}
-
-// Horizontal selection for keys
-const horizontalSelection = () => {
-    previousTap = tap;
-    try { selectingKey[0].classList.remove("selected-color"); } catch{ }
-    try {
-        let selectedRow = [].slice.call(selectedRw[0].children);
-        let keyState = true;
-        addClass(selectedRow, keyState);
-        let horizontal = setInterval(() => addClass(selectedRow, keyState), selectionTimeConfig * 12000);
-        setTimeout(() => { clearInterval(horizontal); rotatingSection() }, (selectionTimeConfig * 11000 * maxHorizontalRotation));
-    } catch {
-        console.log("error in the horizontal selection function")
+        } catch (err) { };
     }
 }
 
@@ -113,7 +123,6 @@ const clearAllTimeouts = () => {
 // Capture the selected key from the row
 const keySelected = () => {
     selectingKey[0].classList.add("selected-color");
-
     try {
         switch (selectingKey[0].getAttribute('id')) {
             case 'up':
@@ -188,13 +197,10 @@ const keySelected = () => {
                 break;
             default:
                 textBox.querySelector('span').innerHTML += `${selectingKey[0].innerHTML}`;
-
                 selectingKey[0].classList.remove("selecting-key");
         }
     }
-    catch {
-        console.log("error to get id attribute")
-    }
+    catch (err) { }
 }
 
 // Change the case of the letter
@@ -208,10 +214,9 @@ const changeLetterCase = (capsLockFlag) => {
             if (li.innerHTML.substring(0, 1) !== '<') {
                 if (li.innerHTML.toUpperCase() != li.innerHTML.toLowerCase()) {
                     if (capsLockFlag) {
-                        li.innerHTML = `${li.innerHTML.toUpperCase()}`
+                        li.innerHTML = `${li.innerHTML.toUpperCase()}`;
                     } else {
-                        li.innerHTML = `${li.innerHTML.toLowerCase()}`
-
+                        li.innerHTML = `${li.innerHTML.toLowerCase()}`;
                     }
                 }
             }
