@@ -6,11 +6,8 @@
     box-sizing: border-box;
 }
 
-body{
-  
- 
-    font-family: sans-serif;
-   
+body{ 
+    font-family: sans-serif;   
     background-color: #f2f2f2;
     opacity: 1;
 }
@@ -27,13 +24,12 @@ main {
     color: rgb(37, 37, 37);
     text-align: center;
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .keyboard{
     margin-bottom: 20px;
     background-color: rgb(242, 242, 242);
-    /* border: 1px solid black; */
     padding: 10px 20px;
     border-radius: 10px;
     box-shadow:
@@ -63,11 +59,7 @@ section ul li{
     text-align: center;
     border: 1px solid rgb(223, 220, 220);
     border-radius: 4px;
-
     transition: background-color 0.5s ease;
-    /* background-color: #98c6d6; */
-    /* border: 1px solid rgb(0, 0, 0); */
-    
 }
 
 .caseChange{
@@ -108,14 +100,21 @@ section ul li{
     margin-bottom: 20px;
 }
 
-main .tap-button{   
+main .tap-button{  
+    color: rgb(126, 125, 125); 
     width: 50px;
     font-size: 14px;
     height: 50px;
     border-radius: 100px;
     border:2px solid hsl(98, 100%, 55%);
     font-weight: 600;
-    
+    box-shadow:
+    0 5px 1.2px rgba(0, 0, 0, 0.034),
+    0 2.7px 1.3px rgba(0, 0, 0, 0.048),
+    0 1.5px 1px rgba(0, 0, 0, 0.06),
+    0 2.3px 7.9px rgba(0, 0, 0, 0.072),
+    0 4.8px 3.4px rgba(0, 0, 0, 0.086),
+    0 1px 2px rgba(0, 0, 0, 0.12);    
 }
 
 .nav-icon{
@@ -127,20 +126,17 @@ main .tap-button{
     background-color: hsl(98, 100%, 55%);
 }
 
-/* blinking cursor */
-.cursor {
-    color: transparent;
-    background: rgb(255, 255, 255);
-    line-height: 17px;
-    -webkit-animation: blink 0.8s infinite;
-    position: relative;
-    
-}
-
 .icon{
     padding-top: 4px;
     width: 15px;
-    height: 15px;
+    height: 18px;
+}
+
+/* blinking cursor */
+/* .cursor {
+    color: transparent;
+    background: rgb(255, 255, 255);
+    -webkit-animation: blink 0.8s infinite;    
 }
   
 @-webkit-keyframes blink {
@@ -148,4 +144,17 @@ main .tap-button{
     50% {background: rgb(0, 0, 0)}
     100% {background: #222}
  
+} */
+
+.cursor::after{
+    content: '|';
+    color: transparent;
+    background: rgb(255, 255, 255);
+    -webkit-animation: blink 0.8s infinite; 
 }
+@-webkit-keyframes blink {
+    0% {background: rgb(255, 255, 255)}
+    50% {background: rgb(0, 0, 0)}
+    100% {background: #222}
+ 
+} 
