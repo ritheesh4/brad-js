@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,16 +7,24 @@
 }
 
 body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: rgb(53, 53, 53);
+  
+ 
+    font-family: 'Lato', sans-serif;
+   
+    background-color: #f2f2f2;
     opacity: 1;
 }
 
+main {
+    margin-top:5% ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .title{
-    color: white;
+    color: rgb(37, 37, 37);
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
@@ -22,6 +32,17 @@ body{
 
 .keyboard{
     margin-bottom: 20px;
+    background-color: rgb(242, 242, 242);
+    /* border: 1px solid black; */
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow:
+    0 1.8px 1.2px rgba(0, 0, 0, 0.034),
+    0 2.7px 1.3px rgba(0, 0, 0, 0.048),
+    0 1.5px 1px rgba(0, 0, 0, 0.06),
+    0 2.3px 7.9px rgba(0, 0, 0, 0.072),
+    0 4.8px 3.4px rgba(0, 0, 0, 0.086),
+    0 10px 8px rgba(0, 0, 0, 0.12);
 }
 
 section ul {
@@ -31,32 +52,38 @@ section ul {
 }
 
 section ul li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(68, 59, 59);
+    font-size: 12;
     width: 35px;
     margin: 2px 2px;
     height: 35px;
     text-align: center;
+    border: 1px solid rgb(223, 220, 220);
     border-radius: 4px;
-    font-size: 20px;
+
     transition: background-color 0.5s ease;
-    background-color: #98c6d6;
-    border: 1px solid rgb(0, 0, 0);
+    /* background-color: #98c6d6; */
+    /* border: 1px solid rgb(0, 0, 0); */
     
 }
 
 .caseChange{
-    background-color: blue;
+    background-color: rgb(116, 172, 236);
 }
 
 
 .selecting{
     transition: background-color 0.2s ease;
-    background-color: yellow !important;
+    background-color: rgb(185, 185, 181) !important;
     
 }
 
 .selecting-key{
     transition: background-color 0.2s ease;
-    background-color: rgba(95, 250, 81, 0.774) !important;
+    background-color: hsl(98, 100%, 55%);
 }
 
 .key-selection{
@@ -64,31 +91,38 @@ section ul li{
 }
 
 #text-box{
-    padding: 4px;
-    width: 100%;
+    padding: 8px;
     height: 200px;
-    background-color: rgb(207, 201, 201);
+    width: 70%;
+    border: 4px solid rgb(219, 219, 219);
+    background-color: #f0f0f0;
+    box-shadow:
+    0 5px 1.2px rgba(0, 0, 0, 0.034),
+    0 2.7px 1.3px rgba(0, 0, 0, 0.048),
+    0 1.5px 1px rgba(0, 0, 0, 0.06),
+    0 2.3px 7.9px rgba(0, 0, 0, 0.072),
+    0 4.8px 3.4px rgba(0, 0, 0, 0.086),
+    0 1px 2px rgba(0, 0, 0, 0.12);
     border-radius: 5px;
-
     margin:auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 main .tap-button{   
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    font-size: 14px;
+    height: 50px;
     border-radius: 100px;
     border: none;
-    background-color: rgb(113, 212, 113);
+    background-color: hsl(98, 100%, 55%);
     font-weight: 600;
     
 }
 
-#down {
-    transform: rotate(180deg);
+.nav-icon{
+    width: 13px;
+    
 }
-
-
 
 
 /* blinking cursor */

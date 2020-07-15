@@ -33,7 +33,7 @@ const taped = () => {
     }
     tapBtn.style.backgroundColor = "red";
     tapBtn.style.color = "white";
-    setTimeout(() => { tapBtn.style.backgroundColor = "rgb(113, 212, 113)"; tapBtn.style.color = "black"; }, 500)
+    setTimeout(() => { tapBtn.style.backgroundColor = "hsl(98, 100%, 55%)"; tapBtn.style.color = "black"; }, 500)
 }
 
 // Rotating vertical selection;
