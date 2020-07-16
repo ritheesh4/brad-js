@@ -18,6 +18,7 @@ let timeouts = [];
 let maxVerticalRotation = 3; // Enter how many times the vertical selection rotation need to execute
 let maxHorizontalRotation = 3; // Enter how many times the horizontal selection rotation need to execute
 let tap = 0;
+let nav = '';
 let previousTap = 0;
 let capsLockFlag = false;
 let selectionTimeConfig = 1; // Enter the selection time in seconds
@@ -84,19 +85,36 @@ const horizontalSelection = () => {
 
 // Add and remove the color to the selected row
 const addClass = (keyRow, keyState) => {
-    if (keyState) { // Responsible for selection of keys
-        try {
-            keyRow.forEach(function (element, index) {
-                setTimeout(function () {
-                    element.classList.add("selecting-key");
+    if (keyState) {
+        // Responsible for selection of keys
+        if (nav === 'down') {
+            try {
+                keyRow.reverse()
+                keyRow.forEach(function (element, index) {
                     setTimeout(function () {
-                        element.classList.remove("selected-color");
-                        element.classList.remove("selecting-key");
-                    }, 1000 * selectionTimeConfig);
-                }, index * 1000 * selectionTimeConfig);
-            });
+                        element.classList.add("selecting-key");
+                        setTimeout(function () {
+                            element.classList.remove("selected-color");
+                            element.classList.remove("selecting-key");
+                        }, 1000 * selectionTimeConfig);
+                    }, index * 1000 * selectionTimeConfig);
+                });
+            }
+            catch (err) { };
+        } else {
+            try {
+                keyRow.forEach(function (element, index) {
+                    setTimeout(function () {
+                        element.classList.add("selecting-key");
+                        setTimeout(function () {
+                            element.classList.remove("selected-color");
+                            element.classList.remove("selecting-key");
+                        }, 1000 * selectionTimeConfig);
+                    }, index * 1000 * selectionTimeConfig);
+                });
+            }
+            catch (err) { };
         }
-        catch (err) { };
     } else {  // Responsible for selection of rows
         try {
             keyRow.forEach(function (element, index) {
@@ -129,17 +147,13 @@ const keySelected = () => {
                 try {
                     let element = selectedRw[0].previousElementSibling;
                     if (element) {
-                        selectingKey[0].classList.remove("selected-color");
-                        selectingKey[0].classList.remove("selecting-key");
-                        selectedRw[0].classList.remove("selecting");
-                        element.classList.add("selecting");
+                        switchSelection(element);
+                        nav = 'up';
                         horizontalSelection();
                     } else {
                         let element = selectedRw[0].parentElement.lastElementChild;
-                        selectingKey[0].classList.remove("selected-color");
-                        selectingKey[0].classList.remove("selecting-key");
-                        selectedRw[0].classList.remove("selecting");
-                        element.classList.add("selecting");
+                        switchSelection(element);
+                        nav = 'up';
                         horizontalSelection();
                     }
                 }
@@ -153,17 +167,13 @@ const keySelected = () => {
                 try {
                     let element = selectedRw[0].nextElementSibling;
                     if (element) {
-                        selectingKey[0].classList.remove("selected-color");
-                        selectingKey[0].classList.remove("selecting-key");
-                        selectedRw[0].classList.remove("selecting");
-                        element.classList.add("selecting");
+                        switchSelection(element);
+                        nav = 'down';
                         horizontalSelection()
                     } else {
                         let element = selectedRw[0].parentElement.firstElementChild;
-                        selectingKey[0].classList.remove("selected-color");
-                        selectingKey[0].classList.remove("selecting-key");
-                        selectedRw[0].classList.remove("selecting");
-                        element.classList.add("selecting");
+                        switchSelection(element);
+                        nav = 'down';
                         horizontalSelection();
                     }
                 }
@@ -175,15 +185,15 @@ const keySelected = () => {
                 break;
             case 'enter':
                 textBox.querySelector('span').innerHTML += `<br>`;
-                selectingKey[0].classList.remove("selecting-key");
+                removeKeySelection();
                 break;
             case 'space':
-                textBox.querySelector('span').innerHTML += `  `;
-                selectingKey[0].classList.remove("selecting-key");
+                textBox.querySelector('span').innerHTML += ` `;
+                removeKeySelection();
                 break;
             case 'delete':
                 textBox.querySelector('span').innerHTML = textBox.querySelector('span').innerHTML.replace(/.$/, '');
-                selectingKey[0].classList.remove("selecting-key");
+                removeKeySelection();
                 break;
             case 'smallLetter':
                 capsLockFlag = !capsLockFlag
@@ -193,14 +203,27 @@ const keySelected = () => {
                 } else {
                     selectingKey[0].classList.remove("caseChange");
                 }
-                selectingKey[0].classList.remove("selecting-key");
+                removeKeySelection();
                 break;
             default:
                 textBox.querySelector('span').innerHTML += `${selectingKey[0].innerHTML}`;
-                selectingKey[0].classList.remove("selecting-key");
+                removeKeySelection();
         }
     }
     catch (err) { }
+}
+
+// Up and Down removing current selection and add new selection to the navigated row
+const switchSelection = (element) => {
+    selectingKey[0].classList.remove("selected-color");
+    selectingKey[0].classList.remove("selecting-key");
+    selectedRw[0].classList.remove("selecting");
+    element.classList.add("selecting");
+}
+
+//Remove the current key selection aftet detection
+const removeKeySelection = () => {
+    selectingKey[0].classList.remove("selecting-key");
 }
 
 // Change the case of the letter
