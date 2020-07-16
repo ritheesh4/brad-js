@@ -89,7 +89,7 @@ const addClass = (keyRow, keyState) => {
         // Responsible for selection of keys
         if (nav === 'down') {
             try {
-                keyRow.reverse()
+                keyRow.reverse();
                 keyRow.forEach(function (element, index) {
                     setTimeout(function () {
                         element.classList.add("selecting-key");
@@ -111,7 +111,7 @@ const addClass = (keyRow, keyState) => {
                             element.classList.remove("selecting-key");
                         }, 1000 * selectionTimeConfig);
                     }, index * 1000 * selectionTimeConfig);
-                });
+                });keyRow.reverse();
             }
             catch (err) { };
         }
