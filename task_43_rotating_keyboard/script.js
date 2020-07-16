@@ -3,14 +3,14 @@
  is considered as the user has selected a row and the selection from there will be for the keys. Next tap will
  for the user to select which key or which option in that row to execute.*/
 
- /*Features
- ------------
- 1. Single tap keyboard functions can be performed.
- 2. Selection time for row and seletcion time for keys are customizable. Row or vertical selection time can be set by changing the value 
-    of the variable "verticalSelectionTime" in seconds. The key slection time can be set by changing the value of the variable "keySelectionTime" in seconds.
- 3. If the user is not active for about a particular limit of time, the selection will go into the idle state. When user clicked back, it will  
-    continue like before. This time of inactivity is also cusomizable by changing the variable value "inactivityTimeLimit" in seconds.
-  */
+/*Features
+------------
+1. Single tap keyboard functions can be performed.
+2. Selection time for row and seletcion time for keys are customizable. Row or vertical selection time can be set by changing the value 
+   of the variable "verticalSelectionTime" in seconds. The key slection time can be set by changing the value of the variable "keySelectionTime" in seconds.
+3. If the user is not active for about a particular limit of time, the selection will go into the idle state. When user clicked back, it will  
+   continue like before. This time of inactivity is also cusomizable by changing the variable value "inactivityTimeLimit" in seconds.
+ */
 
 const keyboard = document.getElementById('keyboard');
 const tapBtn = document.getElementById('tap-button');
@@ -32,6 +32,7 @@ let tap = 0;
 let nav = '';
 let previousTap = 0;
 let capsLockFlag = false;
+let endSentenceFlag = false;
 let verticalSelectionTime = 1;  // Enter the selection time in seconds to select rows.
 let keySelectionTime = 1;  // Enter the selection time in seconds to select keys.
 let inactivityTimeLimit = 36; // Enter the inactivity time limit in seconds.
@@ -80,6 +81,7 @@ const taped = () => {
         tapBtn.style.backgroundColor = "transparent";
         tapBtn.style.color = "rgb(126, 125, 125)";
     }, 500);
+    checkEndSentence();
 }
 
 // Rotating vertical selection.
@@ -273,6 +275,28 @@ const changeLetterCase = (capsLockFlag) => {
 const setCursorPosition = () => {
     textBoxSection.focus()
     textBoxSection.setSelectionRange(textBoxSection.value.length, textBoxSection.value.length);
+}
+
+// Check If user input is dot and space. Then change keyboard.
+const checkEndSentence = () => {
+    try {
+        let textBoxContentLength = textBoxSection.value.length;
+        let textBoxContent = textBoxSection.value;
+        let lastTwoChar = textBoxContent.slice(textBoxContentLength - 2, textBoxContentLength);
+        if (tap > 2) {
+            if (!capsLockFlag || (endSentenceFlag === true)) {
+                if (lastTwoChar === '. ') {
+                    capsLockFlag = true;
+                    changeLetterCase(capsLockFlag);
+                    endSentenceFlag = true;
+                } else {
+                    capsLockFlag = false;
+                    endSentenceFlag = false;
+                    changeLetterCase(capsLockFlag);                   
+                }
+            }
+        }
+    } catch{ }
 }
 
 // Stoping the selection user is not available for a particualr time.
