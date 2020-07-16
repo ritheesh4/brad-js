@@ -59,14 +59,13 @@ function wrongLettersfunc() {
     }
 }
 
-// Keydown letter press
+// Keydown letter press. Then checks the key.
 window.addEventListener('keydown', e => {
     if ((e.keyCode >= 65) && (e.keyCode <= 90)) {
         const letter = e.key;
         if (chosenWord.includes(letter)) {
             if (!correctedLetters.includes(letter)) {
                 correctedLetters.push(letter);
-
                 showWord();
             } else {
                 notifications();
@@ -74,7 +73,6 @@ window.addEventListener('keydown', e => {
         } else {
             if (!wrongLetters.includes(letter)) {
                 wrongLetters.push(letter);
-
                 wrongLettersfunc();
             } else {
                 notifications();
