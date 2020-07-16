@@ -13,7 +13,7 @@ body{
 }
 
 main {
-    margin-top:5% ;
+    margin-top:3% ;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,7 +85,7 @@ section ul li{
 #text-box{
     padding: 8px;
     min-height: 200px;
-    height: auto;
+    height: 250px;
     width: 70%;
     border: 4px solid rgb(219, 219, 219);
     background-color: #f0f0f0;
@@ -100,6 +100,31 @@ section ul li{
     margin:auto;
     margin-bottom: 20px;
 }
+
+textarea{
+    font-family: sans-serif;  
+    height: 225px;
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    resize: none;
+}
+
+textarea#story {
+
+    -moz-appearance:none;
+    outline:0px none transparent;
+}
+  
+textarea:focus, input:focus{
+    outline: 0;
+}
+  
+*:focus {
+    outline: 0;
+}
+  
 
 main .tap-button{  
     color: rgb(126, 125, 125); 
@@ -132,31 +157,3 @@ main .tap-button{
     width: 15px;
     height: 18px;
 }
-
-/* blinking cursor */
-/* .cursor {
-    color: transparent;
-    background: rgb(255, 255, 255);
-    -webkit-animation: blink 0.8s infinite;    
-}
-  
-@-webkit-keyframes blink {
-    0% {background: rgb(255, 255, 255)}
-    50% {background: rgb(0, 0, 0)}
-    100% {background: #222}
- 
-} */
-
-.cursor::after{
-    content: '|';
-    margin-left: 1px;
-    color: transparent;
-    background: rgb(255, 255, 255);
-    -webkit-animation: blink 0.8s infinite; 
-}
-@-webkit-keyframes blink {
-    0% {background: rgb(255, 255, 255)}
-    50% {background: rgb(0, 0, 0)}
-    100% {background: #222}
- 
-} 
