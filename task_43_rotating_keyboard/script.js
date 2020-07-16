@@ -10,6 +10,8 @@
    of the variable "verticalSelectionTime" in seconds. The key slection time can be set by changing the value of the variable "keySelectionTime" in seconds.
 3. If the user is not active for about a particular limit of time, the selection will go into the idle state. When user clicked back, it will  
    continue like before. This time of inactivity is also cusomizable by changing the variable value "inactivityTimeLimit" in seconds.
+4. Keys will be in uppercase mode until first key is pressed.
+5. Uppercase mode will get activated when '.' and space added. It will be considered as a next sentence.
  */
 
 const keyboard = document.getElementById('keyboard');
@@ -35,7 +37,7 @@ let capsLockFlag = false;
 let endSentenceFlag = false;
 let verticalSelectionTime = 1;  // Enter the selection time in seconds to select rows.
 let keySelectionTime = 1;  // Enter the selection time in seconds to select keys.
-let inactivityTimeLimit = 36; // Enter the inactivity time limit in seconds.
+let inactivityTimeLimit = 60; // Enter the inactivity time limit in seconds.
 let checkingInactivity;
 // Tap function enables row selection of the keyboard. 
 
@@ -277,7 +279,7 @@ const setCursorPosition = () => {
     textBoxSection.setSelectionRange(textBoxSection.value.length, textBoxSection.value.length);
 }
 
-// Check If user input is dot and space. Then change keyboard.
+// Check If user input is dot and space then the keyboard changes to uppercase.
 const checkEndSentence = () => {
     try {
         let textBoxContentLength = textBoxSection.value.length;
@@ -292,7 +294,7 @@ const checkEndSentence = () => {
                 } else {
                     capsLockFlag = false;
                     endSentenceFlag = false;
-                    changeLetterCase(capsLockFlag);                   
+                    changeLetterCase(capsLockFlag);
                 }
             }
         }
