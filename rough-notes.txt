@@ -198,7 +198,8 @@ Error handlers
 #Video 90
 - Symbols are not enumerable in for ...in
 - Symbols are ignored by JSON.stringifys
-
+ try catch : The main advantage is we can handle the error without stopiing the entire script.
+ - We can format the errors as the way we want.
 
 
 
