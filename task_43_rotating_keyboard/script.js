@@ -31,10 +31,13 @@ let timeouts = [];
 let maxVerticalRotation = 3;  // Enter how many times the vertical selection rotation need to execute.
 let maxHorizontalRotation = 3;  // Enter how many times the horizontal selection rotation need to execute.
 let tap = 0;
-let nav = '';
+let nav = 'up';
 let previousTap = 0;
 let capsLockFlag = false;
 let endSentenceFlag = false;
+let directionLfFlag;
+let clickActivated = false;
+let croppedELements;
 let verticalSelectionTime = 1;  // Enter the selection time in seconds to select rows.
 let keySelectionTime = 1;  // Enter the selection time in seconds to select keys.
 let inactivityTimeLimit = 60; // Enter the inactivity time limit in seconds.
@@ -107,16 +110,25 @@ const horizontalSelection = () => {
 }
 
 // Add and remove the color to the selected row
-const addSelectionClass = (keyRow, keyState) => {
+const addSelectionClass = (keyRow, keyState, clickActivated) => {
+
     if (keyState) {
         // Responsible for selection of keys
         if (nav === 'down') {
             try {
                 keyRow.reverse();
+                setTimeout(() => {
+                    let copyOfSelectedROw = [].slice.call(selectedRw[0].children);
+                    if (keyRow[0] === copyOfSelectedROw[0]) {
+                        directionLfFlag = true
+                    } else {
+                        directionLfFlag = false
+                    }
+                }, 1000)
                 keyRow.forEach((element, index) => {
-                    setTimeout(() => {
+                    downTimeout1 = setTimeout(() => {
                         element.classList.add("selecting-key");
-                        setTimeout(() => {
+                        downTimeout2 = setTimeout(() => {
                             element.classList.remove("selected-color");
                             element.classList.remove("selecting-key");
                         }, 1000 * keySelectionTime);
@@ -124,8 +136,40 @@ const addSelectionClass = (keyRow, keyState) => {
                 });
             }
             catch (err) { };
+        } else if (nav === 'up') {
+            try {
+                setTimeout(() => {
+                    let copyOfSelectedROw = [].slice.call(selectedRw[0].children);
+                    if (keyRow[0] === copyOfSelectedROw[0]) {
+                        directionLfFlag = false
+                    } else {
+                        directionLfFlag = true
+                    }
+                }, 1000)
+                // clickActivated = false;
+
+                keyRow.forEach((element, index) => {
+                    upTimeout1 = setTimeout(() => {
+                        element.classList.add("selecting-key");
+                        upTimeout2 = setTimeout(() => {
+                            element.classList.remove("selected-color");
+                            element.classList.remove("selecting-key");
+                        }, 1000 * keySelectionTime);
+                    }, index * 1000 * keySelectionTime);
+                }); keyRow.reverse();
+            }
+            catch (err) { };
         } else {
             try {
+                setTimeout(() => {
+                    let copyOfSelectedROw = [].slice.call(selectedRw[0].children);
+                    if (keyRow[0] === copyOfSelectedROw[0]) {
+                        directionLfFlag = false
+                    } else {
+                        directionLfFlag = true
+                    }
+
+                }, 1000)
                 keyRow.forEach((element, index) => {
                     setTimeout(() => {
                         element.classList.add("selecting-key");
@@ -152,6 +196,7 @@ const addSelectionClass = (keyRow, keyState) => {
         } catch (err) { };
     }
 }
+
 
 // Reseting all the timers.
 const clearAllTimeouts = () => {
@@ -210,15 +255,21 @@ const keySelected = () => {
                 break;
             case 'enter':
                 textBox.querySelector('textarea').innerHTML += `\r\n`;
-                removeKeySelection();
+                clearAllTimeouts();
+                multiClick(selectingKey[0]);
+
                 break;
             case 'space':
                 textBox.querySelector('textarea').innerHTML += ` `;
-                removeKeySelection();
+                clearAllTimeouts();
+                multiClick(selectingKey[0]);
                 break;
             case 'delete':
                 textBox.querySelector('textarea').innerHTML = textBox.querySelector('textarea').innerHTML.replace(/.$/, '');
-                removeKeySelection();
+                clearAllTimeouts();
+                multiClick(selectingKey[0]);
+
+
                 break;
             case 'smallLetter':
                 capsLockFlag = !capsLockFlag
@@ -232,7 +283,9 @@ const keySelected = () => {
                 break;
             default:
                 textBox.querySelector('textarea').innerHTML += `${selectingKey[0].innerHTML}`;
-                removeKeySelection();
+
+                clearAllTimeouts();
+                multiClick(selectingKey[0]);
         }
         setCursorPosition();
     }
@@ -250,6 +303,116 @@ const switchSelection = (element) => {
 //Remove the current key selection aftet detection.
 const removeKeySelection = () => {
     selectingKey[0].classList.remove("selecting-key");
+}
+
+//Multi click function
+const multiClick = (element) => {
+    let parentElem = element.parentElement;
+    let indexClicked = Array.prototype.indexOf.call(parentElem.children, element);
+    let currentRow = [].slice.call(parentElem.children);
+
+
+    setTimeout(() => {
+        element.classList.remove("selected-color");
+        element.classList.remove("selecting-key");
+        changeDirectionFuc(indexClicked, parentElem, currentRow)
+    }, 1000 * keySelectionTime);
+    clickActivated = true;
+
+
+}
+
+
+const changeDirectionFuc = (indexClicked, parentElem, currentRow) => {
+
+    try {
+        if (nav === 'up') {
+            if (directionLfFlag === true) {
+                croppedELements = currentRow.slice(indexClicked + 1, parentElem.length);
+                croppedELements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add("selecting-key");
+                        setTimeout(() => {
+                            element.classList.remove("selected-color");
+                            element.classList.remove("selecting-key");
+                            if (element.id === 'down') {
+                                nav = 'down'
+                                horizontalSelection()
+                            }
+
+                        }, 1000 * keySelectionTime);
+                    }, index * 1000 * keySelectionTime);
+                });
+            }
+        } else if (nav === 'down') {
+            if (directionLfFlag === false) {
+                currentRow;
+                croppedELements = currentRow.slice(0, indexClicked);
+
+                croppedELements.reverse()
+                croppedELements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add("selecting-key");
+                        setTimeout(() => {
+                            element.classList.remove("selected-color");
+                            element.classList.remove("selecting-key");
+                            if (element.id === 'up') {
+                                nav = 'up'
+                                horizontalSelection()
+                            }
+
+                        }, 1000 * keySelectionTime);
+                    }, index * 1000 * keySelectionTime);
+                });
+            }
+        } if (nav === 'up') {
+            if (directionLfFlag === false) {
+                croppedELements = currentRow.slice(indexClicked + 1, parentElem.length);
+                croppedELements.reverse()
+                croppedELements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add("selecting-key");
+                        setTimeout(() => {
+                            element.classList.remove("selected-color");
+                            element.classList.remove("selecting-key");
+                            if (element.id === 'up') {
+                                nav = 'up'
+                                horizontalSelection()
+                            }
+
+                        }, 1000 * keySelectionTime);
+                    }, index * 1000 * keySelectionTime);
+                });
+            }
+        } else if (nav === 'down') {
+            if (directionLfFlag === true) {
+                currentRow;
+                croppedELements = currentRow.slice(0, indexClicked);
+
+                croppedELements.reverse()
+                croppedELements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add("selecting-key");
+                        setTimeout(() => {
+                            element.classList.remove("selected-color");
+                            element.classList.remove("selecting-key");
+                            if (element.id === 'down') {
+                                nav = 'down'
+                                horizontalSelection()
+                            }
+
+                        }, 1000 * keySelectionTime);
+                    }, index * 1000 * keySelectionTime);
+                });
+            }
+        }
+
+
+
+
+
+    }
+    catch (err) { };
 }
 
 // Change the case of the letter.
