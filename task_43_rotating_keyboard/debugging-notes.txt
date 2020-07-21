@@ -8,6 +8,5 @@
       the cursor into the correct positon.
     - Adding cursor via css after method will make the things very complicated. If we choose a normal div than a textArea for this application,
       to bring the cursor to the next line while enter button clicked will make lot of messing problemes. textArea is the easiest way to solve this.
-
-2. How to kill the every 
+      
 
