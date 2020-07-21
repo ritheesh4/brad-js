@@ -313,7 +313,7 @@ const multiClick = (element) => {
     clickActivated = true;
 }
 
-// The position and the selection after multiple times a key has been clicked
+// The position and the selection after multiple times a key has been clicked.
 const updateSelectionMulticlick = (indexClicked, parentElem, currentRow) => {
     try {
         if (nav === 'up') {
@@ -364,7 +364,8 @@ const updateSelectionMulticlick = (indexClicked, parentElem, currentRow) => {
                             element.classList.remove("selecting-key");
                             if (element.id === 'up') {
                                 nav = 'up';
-                                horizontalSelection();                            }
+                                horizontalSelection();
+                            }
                         }, 1000 * keySelectionTime);
                     }, index * 1000 * keySelectionTime);
                 });
@@ -413,7 +414,7 @@ const changeLetterCase = (capsLockFlag) => {
     });
 }
 
-// Set the blinking cursor position to the end
+// Set the blinking cursor position to the end.
 const setCursorPosition = () => {
     textBoxSection.focus();
     textBoxSection.setSelectionRange(textBoxSection.value.length, textBoxSection.value.length);
@@ -442,7 +443,7 @@ const checkEndSentence = () => {
     } catch{ };
 }
 
-// Stoping the selection user is not available for a particualr time.
+// Stoping the selection if user is not available for a particualr time.
 const nonReseponsiveStop = () => {
     clearAllTimeouts();
     if (tap === 1) {
@@ -455,6 +456,6 @@ const nonReseponsiveStop = () => {
     tap = 0;
 }
 
-// Detect when tapped on the screen
+// Detect when tapped on the screen.
 document.addEventListener("click", taped);
 
