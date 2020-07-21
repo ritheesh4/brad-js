@@ -12,6 +12,7 @@
    continue like before. This time of inactivity is also cusomizable by changing the variable value "inactivityTimeLimit" in seconds.
 4. Keys will be in uppercase mode until first key is pressed.
 5. Uppercase mode will get activated when '.' and space added. It will be considered as a next sentence.
+6. Multiple clicks possible on single keys.
  */
 
 const keyboard = document.getElementById('keyboard');
@@ -40,7 +41,7 @@ let clickActivated = false;
 let croppedELements;
 let verticalSelectionTime = 1;  // Enter the selection time in seconds to select rows.
 let keySelectionTime = 1;  // Enter the selection time in seconds to select keys.
-let inactivityTimeLimit = 60; // Enter the inactivity time limit in seconds.
+let inactivityTimeLimit = 300; // Enter the inactivity time limit in seconds.
 let checkingInactivity;
 // Tap function enables row selection of the keyboard. 
 
@@ -111,7 +112,6 @@ const horizontalSelection = () => {
 
 // Add and remove the color to the selected row
 const addSelectionClass = (keyRow, keyState, clickActivated) => {
-
     if (keyState) {
         // Responsible for selection of keys
         if (nav === 'down') {
@@ -120,9 +120,9 @@ const addSelectionClass = (keyRow, keyState, clickActivated) => {
                 setTimeout(() => {
                     let copyOfSelectedROw = [].slice.call(selectedRw[0].children);
                     if (keyRow[0] === copyOfSelectedROw[0]) {
-                        directionLfFlag = true
+                        directionLfFlag = true;
                     } else {
-                        directionLfFlag = false
+                        directionLfFlag = false;
                     }
                 }, 1000)
                 keyRow.forEach((element, index) => {
@@ -141,9 +141,9 @@ const addSelectionClass = (keyRow, keyState, clickActivated) => {
                 setTimeout(() => {
                     let copyOfSelectedROw = [].slice.call(selectedRw[0].children);
                     if (keyRow[0] === copyOfSelectedROw[0]) {
-                        directionLfFlag = false
+                        directionLfFlag = false;
                     } else {
-                        directionLfFlag = true
+                        directionLfFlag = true;
                     }
                 }, 1000)
                 // clickActivated = false;
@@ -164,9 +164,9 @@ const addSelectionClass = (keyRow, keyState, clickActivated) => {
                 setTimeout(() => {
                     let copyOfSelectedROw = [].slice.call(selectedRw[0].children);
                     if (keyRow[0] === copyOfSelectedROw[0]) {
-                        directionLfFlag = false
+                        directionLfFlag = false;
                     } else {
-                        directionLfFlag = true
+                        directionLfFlag = true;
                     }
 
                 }, 1000)
@@ -197,7 +197,6 @@ const addSelectionClass = (keyRow, keyState, clickActivated) => {
     }
 }
 
-
 // Reseting all the timers.
 const clearAllTimeouts = () => {
     let highestTimeoutId = setTimeout(";");
@@ -227,9 +226,7 @@ const keySelected = () => {
                         horizontalSelection();
                     }
                 }
-                catch {
-                    console.log("end reached");
-                }
+                catch { };
                 clearAllTimeouts();
                 horizontalSelection();
                 break;
@@ -239,7 +236,7 @@ const keySelected = () => {
                     if (element) {
                         switchSelection(element);
                         nav = 'down';
-                        horizontalSelection()
+                        horizontalSelection();
                     } else {
                         let element = selectedRw[0].parentElement.firstElementChild;
                         switchSelection(element);
@@ -247,9 +244,7 @@ const keySelected = () => {
                         horizontalSelection();
                     }
                 }
-                catch {
-                    console.log("end reached");
-                }
+                catch { }
                 clearAllTimeouts();
                 horizontalSelection();
                 break;
@@ -283,7 +278,6 @@ const keySelected = () => {
                 break;
             default:
                 textBox.querySelector('textarea').innerHTML += `${selectingKey[0].innerHTML}`;
-
                 clearAllTimeouts();
                 multiClick(selectingKey[0]);
         }
@@ -311,20 +305,16 @@ const multiClick = (element) => {
     let indexClicked = Array.prototype.indexOf.call(parentElem.children, element);
     let currentRow = [].slice.call(parentElem.children);
 
-
     setTimeout(() => {
         element.classList.remove("selected-color");
         element.classList.remove("selecting-key");
-        changeDirectionFuc(indexClicked, parentElem, currentRow)
+        updateSelectionMulticlick(indexClicked, parentElem, currentRow)
     }, 1000 * keySelectionTime);
     clickActivated = true;
-
-
 }
 
-
-const changeDirectionFuc = (indexClicked, parentElem, currentRow) => {
-
+// The position and the selection after multiple times a key has been clicked
+const updateSelectionMulticlick = (indexClicked, parentElem, currentRow) => {
     try {
         if (nav === 'up') {
             if (directionLfFlag === true) {
@@ -336,10 +326,9 @@ const changeDirectionFuc = (indexClicked, parentElem, currentRow) => {
                             element.classList.remove("selected-color");
                             element.classList.remove("selecting-key");
                             if (element.id === 'down') {
-                                nav = 'down'
-                                horizontalSelection()
+                                nav = 'down';
+                                horizontalSelection();
                             }
-
                         }, 1000 * keySelectionTime);
                     }, index * 1000 * keySelectionTime);
                 });
@@ -348,7 +337,6 @@ const changeDirectionFuc = (indexClicked, parentElem, currentRow) => {
             if (directionLfFlag === false) {
                 currentRow;
                 croppedELements = currentRow.slice(0, indexClicked);
-
                 croppedELements.reverse()
                 croppedELements.forEach((element, index) => {
                     setTimeout(() => {
@@ -357,16 +345,33 @@ const changeDirectionFuc = (indexClicked, parentElem, currentRow) => {
                             element.classList.remove("selected-color");
                             element.classList.remove("selecting-key");
                             if (element.id === 'up') {
-                                nav = 'up'
-                                horizontalSelection()
+                                nav = 'up';
+                                horizontalSelection();
                             }
-
                         }, 1000 * keySelectionTime);
                     }, index * 1000 * keySelectionTime);
                 });
             }
         } if (nav === 'up') {
             if (directionLfFlag === false) {
+                croppedELements = currentRow.slice(0, indexClicked + 1);
+                croppedELements.reverse()
+                croppedELements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add("selecting-key");
+                        setTimeout(() => {
+                            element.classList.remove("selected-color");
+                            element.classList.remove("selecting-key");
+                            if (element.id === 'up') {
+                                nav = 'up';
+                                horizontalSelection();                            }
+                        }, 1000 * keySelectionTime);
+                    }, index * 1000 * keySelectionTime);
+                });
+            }
+        } else if (nav === 'down') {
+            if (directionLfFlag === true) {
+                currentRow;
                 croppedELements = currentRow.slice(indexClicked + 1, parentElem.length);
                 croppedELements.reverse()
                 croppedELements.forEach((element, index) => {
@@ -375,42 +380,15 @@ const changeDirectionFuc = (indexClicked, parentElem, currentRow) => {
                         setTimeout(() => {
                             element.classList.remove("selected-color");
                             element.classList.remove("selecting-key");
-                            if (element.id === 'up') {
-                                nav = 'up'
-                                horizontalSelection()
-                            }
-
-                        }, 1000 * keySelectionTime);
-                    }, index * 1000 * keySelectionTime);
-                });
-            }
-        } else if (nav === 'down') {
-            if (directionLfFlag === true) {
-                currentRow;
-                croppedELements = currentRow.slice(0, indexClicked);
-
-                croppedELements.reverse()
-                croppedELements.forEach((element, index) => {
-                    setTimeout(() => {
-                        element.classList.add("selecting-key");
-                        setTimeout(() => {
-                            element.classList.remove("selected-color");
-                            element.classList.remove("selecting-key");
                             if (element.id === 'down') {
-                                nav = 'down'
-                                horizontalSelection()
+                                nav = 'down';
+                                horizontalSelection();
                             }
-
                         }, 1000 * keySelectionTime);
                     }, index * 1000 * keySelectionTime);
                 });
             }
         }
-
-
-
-
-
     }
     catch (err) { };
 }
@@ -419,7 +397,6 @@ const changeDirectionFuc = (indexClicked, parentElem, currentRow) => {
 const changeLetterCase = (capsLockFlag) => {
     let result = selectedRw[0].parentElement;
     let rowParent = [].slice.call(result.children);
-
     rowParent.forEach((ul) => {
         let result = [].slice.call(ul.children);
         result.forEach((li) => {
@@ -438,8 +415,9 @@ const changeLetterCase = (capsLockFlag) => {
 
 // Set the blinking cursor position to the end
 const setCursorPosition = () => {
-    textBoxSection.focus()
+    textBoxSection.focus();
     textBoxSection.setSelectionRange(textBoxSection.value.length, textBoxSection.value.length);
+    textBoxSection.scrollTop = textBoxSection.scrollHeight - textBoxSection.clientHeight;
 }
 
 // Check If user input is dot and space then the keyboard changes to uppercase.
@@ -461,7 +439,7 @@ const checkEndSentence = () => {
                 }
             }
         }
-    } catch{ }
+    } catch{ };
 }
 
 // Stoping the selection user is not available for a particualr time.
