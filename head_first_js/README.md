@@ -161,3 +161,21 @@
 7. Global and local variable
   Global: Scope availbe to ponit
   Local: Scope available only in that particular function
+
+## Chapter 4
+Arrays
+- Store muliple values.
+While loop and for loop
+- Without including counter, while loop can run.  When use while loop, we have to initialize our counter and increment our counter in separate statement.
+- In for loop, everything is packed right in the FOR statement for all to see and with no chance of htings getting 
+  changed or lost.
+
+What is sparse arrya?
+ - A sparse array is just an array that has values at only a few indices and no values in between. You can craete a sparse arrya easilty, like this:
+  let sparseArray = [];
+  sparseArray[0] = true;
+  sparseArray[100] = true;
+  
+In this example, the sparseArray has only two values, both true, at indices 0 and 100. The values at all the other indices are undefined. The lenght of the array is 101 even though there are only two values.
+ 
+- Try to write functions for all repeating codes.
