@@ -76,28 +76,127 @@
 // };
 // prequal(fiat);
 
-let chevy = {
-  make: "Chevy",
-  model: "Bel Air",
-  year: 1957,
-  color: "red",
-  passengers: 2,
-  convertible: false,
-  mileage: 1021,
-};
+// let chevy = {
+//   make: "Chevy",
+//   model: "Bel Air",
+//   year: 1957,
+//   color: "red",
+//   passengers: 2,
+//   convertible: false,
+//   mileage: 1021,
+// };
 
-const prequal = (car) => {
-  if (car.mileage > 10000) {
-    return false;
-  } else if (car.year > 1960) {
-    return false;
+// const prequal = (car) => {
+//   if (car.mileage > 10000) {
+//     return false;
+//   } else if (car.year > 1960) {
+//     return false;
+//   }
+//   return true;
+// };
+
+// let worthALook = prequal(chevy);;
+// if (worthALook) {
+//   console.log("You gotta check out this " + chevy.make + " " + chevy.model);
+// } else {
+//   console.log("You should really pass on the " + chevy.make + " " + chevy.model);
+// }
+
+// dog = {
+//   name: "Fido",
+//   weight: 48,
+//   breed: "Mixed",
+//   loves: "walks",
+// };
+
+// const loseWeight = (dog, amount) => {
+//   dog.weight = dog.weight - amount;
+// };
+
+// loseWeight(dog,10)
+
+// console.log(dog.name + "now weighs" + dog.weight);
+// console.log(dog);
+
+// let fiat = {
+//   make: "Fiat",
+//   model: "500",
+//   year: 1957,
+//   color: "Medium Blue",
+//   passengers: 2,
+//   convertible: false,
+//   mileage: 88000,
+//   drive: function () {
+//     console.log("Zoom zoom!");
+//   },
+// };
+
+// console.log(typeof fiat.drive);
+
+// let fiat = {
+//   make: "Fiat",
+//   model: "500",
+//   year: 1957,
+//   color: "Medium Blue",
+//   passengers: 2,
+//   convertible: false,
+//   mileage: 88000,
+//   started: false,
+//   start: function () {
+//     started = true;
+//   },
+//   stop: function () {
+//     started = false;
+//   },
+//   drive: function () {
+//     if (started) {
+//       console.log("Zoom zoom!");
+//     } else {
+//       console.log("You need to start the engine first.");
+//     }
+//   },
+// };
+
+// fiat.drive();
+// fiat.start();
+// fiat.drive();
+// fiat.stop();
+
+// let fiat = {
+//   make: "Fiat",
+//   model: "500",
+//   year: 1957,
+//   color: "Medium Blue",
+//   passengers: 2,
+//   convertible: false,
+//   mileage: 88000,
+//   started: false,
+//   start: function () {
+//     this.started = true;
+//   },
+//   stop: function () {
+//     this.started = false;
+//   },
+//   drive: function () {
+//     if (this.started) {
+//       console.log("Zoom zoom!");
+//     } else {
+//       console.log("You need to start the engine first.");
+//     }
+//   },
+// };
+
+// fiat.drive();
+// fiat.start();
+// fiat.drive();
+// fiat.stop();
+// fiat.drive();
+
+let test = {
+  showMe: function (arg){
+    console.log(showMe)
+    return arg
   }
-  return true;
-};
-
-let worthALook = prequal(chevy);;
-if (worthALook) {
-  console.log("You gotta check out this " + chevy.make + " " + chevy.model);
-} else {
-  console.log("You should really pass on the " + chevy.make + " " + chevy.model);
 }
+
+console.log(test.showMe("hi"))

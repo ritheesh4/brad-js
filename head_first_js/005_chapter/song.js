@@ -14,6 +14,7 @@ let song = {
   pause: function () {
     if (this.playing) {
       this.playing = false;
+      console.log("paused")
     }
   },
 };

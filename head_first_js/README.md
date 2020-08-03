@@ -222,4 +222,22 @@ In this example, the sparseArray has only two values, both true, at indices 0 an
   - A variable dones not hold the object iteslf, but it holds somethings like a pointer. And, in JavaScript we do not really know what is inside a reference variable, We do know that whatever it is, it points to our object.
   - When we use dot notation, the JavaScript onterpreter takes care of using ht e reference to get the object and then 
     accesses its propterties for us.
+6. You can add functions directly to an object.
+   example :let fiat = {
+                        make: "Fiat",
+                        model: "500",
+                        year: 1957,
+                        color: "Medium Blue",
+                        passengers: 2,
+                        convertible: false,
+                        mileage: 88000,
+                        drive: function() {
+                        alert.log("Zoom zoom!");
+                      }
+            };
+7. This property is used("this") in JavaScript inside of an object, there is how the property of an object accesses in 
+  other places inside of that object.
 
+8. Method is just a function that's been assigned to property name in an object.
+
+9. The value of this is et to th eobject when you call the method. SO when you call fiat.start()
