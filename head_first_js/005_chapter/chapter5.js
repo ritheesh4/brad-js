@@ -192,11 +192,37 @@
 // fiat.stop();
 // fiat.drive();
 
-let test = {
-  showMe: function (arg){
-    console.log(showMe)
-    return arg
-  }
-}
+// let test = {
+//   color:"red",
+//   showMe: function (arg){
+//     console.log(test.color)
+//     return arg
+//   }
+// }
 
-console.log(test.showMe("hi"))
+// console.log(test.showMe("hi"))
+// let fiat = {
+//   make: "Fiat",
+
+//   started: false,
+//   start: function () {
+//     started = true;
+//     console.log("Started");
+//   },
+//   stop: function () {
+//     fiat.started = false;
+//   },
+//   drive: function () {
+//     if (fiat.started) {
+//       console.log("Zoom zoom!");
+//     } else {
+//       console.log("You need to start the engine first.");
+//     }
+//   },
+// };
+
+fiat.start();
+
+
+
+

@@ -241,3 +241,20 @@ In this example, the sparseArray has only two values, both true, at indices 0 an
 8. Method is just a function that's been assigned to property name in an object.
 
 9. The value of this is et to th eobject when you call the method. SO when you call fiat.start()
+
+## Chapter 6
+
+DOM(Document Object Model)
+
+- DOcument is like th eroot of an upside down tree.
+- document => Node at the top
+- <html> => top level element added sa a child of document. 
+- Upcoming elements would be nested with html.
+
+1. Things can be done on the element get by using getElementById()
+ - Get the content(text or HTML).
+ - Change the content.
+ - Read an attribute.
+ - Add an attribute.
+ - change an attribute.
+ - Remove an attribute.
