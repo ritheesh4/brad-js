@@ -185,6 +185,7 @@ let scores = [
   51,
   44,
 ];
+
 let highScore = 0;
 let output;
 

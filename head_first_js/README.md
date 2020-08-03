@@ -179,3 +179,47 @@ What is sparse arrya?
 In this example, the sparseArray has only two values, both true, at indices 0 and 100. The values at all the other indices are undefined. The lenght of the array is 101 even though there are only two values.
  
 - Try to write functions for all repeating codes.
+
+## Chapter 5
+ 
+1. How to create an Object
+ - Add avariable delcaration for the object
+ - Next, start and object iwth a left curly brace.
+ - Then all the object's properties go inside.
+ - Each propterty has a name, a colon and then a value.
+ - Each property has to be separated by a comma.
+ - End the object with a closing curly brace, and just like any other variable declaration,
+   we end this one with a semicolon.
+
+    Example: let chevy = {
+                  make: "Chevy",
+                  model: "Bel Air",
+                  year: 1957,
+                  color: "red",
+                  passengers: 2,
+                  convertible: false,
+                  mileage: 1021
+                  };
+
+2. Object oriented programming
+  - With object-oriented programming we think about a problem in terms of objects. Objects that have
+    state and behavior. IN procedurally thingking, a set of variable declarations, conditionals for/while statements, and function calls are used. Object oriented is different.
+  - To access a property in the object, start with the object name, follow it with a period (otherwise known as a "dot") 
+    and then use the property name. We often call that "dot" notation and it looks like this:
+     fiat.mileage.
+
+3. How to add a new property.
+  - Specify the new property and give it a value.
+  example:
+  fiat.needsSashing = true; As long as the property does not already exist in the object, it's added to the object. Otherwise, the property with this name iis updated.
+
+4. Hot to delete a property in a object
+  - To delete a property , just use special keyword delete.
+  example: delete fido.dogYears;
+
+5. Does varialb hold an object?
+  - Variables don't actually hold objects. Instead they hold a reference to an object.
+  - A variable dones not hold the object iteslf, but it holds somethings like a pointer. And, in JavaScript we do not really know what is inside a reference variable, We do know that whatever it is, it points to our object.
+  - When we use dot notation, the JavaScript onterpreter takes care of using ht e reference to get the object and then 
+    accesses its propterties for us.
+
