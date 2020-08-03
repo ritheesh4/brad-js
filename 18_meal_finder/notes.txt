@@ -1,0 +1,1 @@
+1. The trim() method removes whitespace from both sides of a string. Note: The trim() method does not change the original string.
