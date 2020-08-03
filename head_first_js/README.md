@@ -268,3 +268,16 @@ DOM(Document Object Model)
 
  DOM is a big tree of element objects.
  
+4. How to call a function only after the html page is loaded.
+  window.onload = init;
+  So this callback will invoe the init function only after the html page has loaded.
+
+5. How to set attribute to an element. Example class names to change the stylings.
+    planet.setAttribute("class", "redtext"); Here the planet element gets the class attribute as redtext.
+
+6. You can get the attribute of an element by using getAttribute method.\
+
+7. If you put your code in a <script> element in the <head></script> of your page, you need ot make sure you don't
+  try to modify the DOM until the page is fully loaded.
+
+8. Window object's onload peoperty to set an event hamdler or callback funtion for the load event.
