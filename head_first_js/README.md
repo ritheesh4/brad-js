@@ -258,3 +258,13 @@ DOM(Document Object Model)
  - Add an attribute.
  - change an attribute.
  - Remove an attribute.
+
+2. What happens if I use document.getElementById and pass in an id that doesn't exist?
+ - Ans: null returns
+
+3. Other methods to get elements than id
+ -  getElementsByClassName => Returns all the elements whose having the same class name.
+ -  getElementsByTagName => Returns all the elements whose having the similar tag name.
+
+ DOM is a big tree of element objects.
+ 
