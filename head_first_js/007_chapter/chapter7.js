@@ -176,6 +176,3 @@
 // toy.quack();
 // console.log(typeof toy);
 // console.log(toy instanceof Duck);
-
-console.log(0 ==+ "")
-console.log(0 ===+ "")
