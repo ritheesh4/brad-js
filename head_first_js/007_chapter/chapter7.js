@@ -92,13 +92,87 @@
 //My predictions, correct
 // you stole ith diamond
 // a sure sign of guilt
-// Guess you lied about you name  
+// Guess you lied about you name
 //  let c = [];
 //  console.log(c[2])
 
-let test = "hello. This is the beginning";
-let result = test.match(/hello/g);
-console.log(result);
+// let test = "hello. This is the beginning";
+// let result = test.match(/hello/g);
+// console.log(result);
 
+// const validate = (phoneNumber) => {
+// //   if (phoneNumber.length !== 8) {
+// //     return false;
+// //   }
+//   for (let i = 0; i < phoneNumber.length; i++) {
+//     if (i === 3) {
+//       if (phoneNumber.charAt(i) !== "-") {
+//         return false;
+//       }
+//     } else if (isNaN(phoneNumber.charAt(i))) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
 
+// console.log(validate(896799-97));
 
+// const validate = (phoneNumber) => {
+//   if (phoneNumber.length !== 8) {
+//     return false;
+//   }
+//   let first = phoneNumber.substring(0, 3);
+//   let second = phoneNumber.substring(4);
+//   if (phoneNumber.charAt(3) !== "-" || isNaN(first) || isNaN(second)) {
+//     return false;
+//   }
+//   return true;
+// };
+
+// const validate = (phoneNumber) => {
+//   if (phoneNumber.length > 8 || phoneNumber.length < 7) {
+//     return false;
+//   }
+//   for (let i = 0; i < phoneNumber.length; i++) {
+//     if (i === 3) {
+//       if (phoneNumber.length === 8 && phoneNumber.charAt(i) !== "-") {
+//         return false;
+//       } else if (phoneNumber.length === 7 && isNaN(phoneNumber.charAt(i))) {
+//         return false;
+//       }
+//     } else if (isNaN(phoneNumber.charAt(i))) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
+
+// console.log(validate(567898765))
+
+// function validate(phoneNumber) {
+//   if (phoneNumber.length > 8 || phoneNumber.length < 7) {
+//     return false;
+//   }
+//   let first = phoneNumber.substring(0, 3);
+//   let second = phoneNumber.substring(phoneNumber.length - 4);
+//   if (isNaN(first) || isNaN(second)) {
+//     return false;
+//   }
+//   if (phoneNumber.length === 8) {
+//     return phoneNumber.charAt(3) === "-";
+//   }
+//   return true;
+// }
+
+function Duck(sound) {
+  this.sound = sound;
+  this.quack = function () {
+    console.log(this.sound);
+  };
+}
+
+let toy = new Duck("quack quack");
+toy.quack();
+console.log(typeof toy);
+console.log(toy instanceof Duck);
