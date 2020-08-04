@@ -354,3 +354,26 @@ DOM is a big tree of element objects.
 10. typof null is object. But most recent spec defines type of null as null.
 
 11. According to JavaScript rules, it will convert the true to 1 athen compare with the next value.
+
+12. What JvaScript considers falsey
+
+    - undefined is falsey.
+    - null is falsey.
+    - 0 is falsey.
+    - The empty string is falsey.
+    - NaN is falsey.
+
+13. Strings
+    Strings are both premitive and object type. Numbers and booleans can also act like objects.//refrece book:The Definitive
+    - string.trim() => Removes white spaces are the string.
+    - string.toUpperCase() => Convert letters into upper case.
+    - string.charAt(index) => Gives the character on that particular index of the string.
+    - string.indexOf("substring") => This resutrns the index of the substring beginning.
+    - string.indexOf("substrig", index) => By giving the second argument index, the search skips index values of the  
+      index provided. For example is the index is 5, the search starts from index 5. Its like a starting position.
+    - If the string can not be found, -1 returns as the index.
+    - strings.substring(5, 10) => Is used to find the substring of index starts at 5 and ends at 10;(delimiter)
+    - string.split(",") => the comma's are splitted then add those substrings to an array.
+    - string.replace("target","string") => Using this, string can be replaced.
+    - string.match(/substring/g) => This can be used to check a particualr string is matching the main string.Regexp is
+      required = /substring/g.

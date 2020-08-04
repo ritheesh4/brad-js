@@ -61,8 +61,54 @@
 // console.log(99 === "99");
 // console.log(undefined === null);
 
-console.log(0 === +"");
-// console.log((1 = +2));
-let result =2;
-result =- 2;
-console.log(result)
+// console.log(0 === +"");
+// // console.log((1 = +2));
+// let result =2;
+// result =- 2;
+// console.log(result)
+
+// Truthy or falsey
+
+// Falsey
+let testThis;
+if (testThis) {
+  console.log("testThis is true");
+  // do something
+}
+
+let element = null;
+if (element) {
+  console.log("element working");
+}
+
+if (0) {
+  console.log("0 working");
+}
+
+if ("") {
+  console.log(" space working");
+}
+
+if (NaN) {
+  console.log("NaN working");
+}
+
+// Truthy
+
+if ([]) {
+  console.log("empty array");
+}
+
+// let element = document.getElementById("elementThatDoesExist");
+if (element) {
+  console.log("element");
+}
+
+if (1) {
+  console.log("1");
+}
+
+let string = "mercy me";
+if (string) {
+  console.log("string");
+}
