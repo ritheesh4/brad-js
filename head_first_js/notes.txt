@@ -1,0 +1,12 @@
+Meeting notes
+-------------
+- Type is very important. So keep only the right data types.
+- When you asses a progress, go step by step clearly.
+- What ever we write inside of a condition, it resovles it to a boolean value.
+
+- Reference Error is and error. But undefined is not an error. It says that that vairalbe is not defined.
+
+- Shadow the global vairalbe means if we declare a local variable with the same name of the global variabl inside of the
+  function, that will shadow the global and so that the global vairable will not change. 
+
+- Try to use different names for the local and global varialbe names.

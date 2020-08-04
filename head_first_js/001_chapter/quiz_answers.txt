@@ -1,0 +1,31 @@
+1. Do things more than once in a JavaScript program with
+the _________ loop. = While loop
+
+3. JavaScript variable names are _________ sensitive. = case sensitive
+
+4. To declare a variable, use this keyword. = var
+
+5. Variables are used to store these. = data
+
+6. Each time through a loop, we evaluate a
+______________ expression. = Current
+8. Today's JavaScript runs a lot
+________________ than it used to.
+9. The if/else statement is used to make a
+____________.
+11. You can concatenate _______________
+together with the + operator.
+12. You put your JavaScript inside a ______________
+element.
+
+2. To link to an external JavaScript file from HTML, you
+need the _______ attribute for your <script> element.
+6. To avoid embarrassing naming mistakes, use
+__________ case.
+7. JavaScript adds _______________ to your web pages.
+10. There are 99 _____________ of beer on the wall.
+13. Each line of JavaScript code is called a
+_______________.
+14. 3 + 4 is an example of an _____________.
+15. All JavaScript statements end with a ___________.
+16. Use _____________ to troubleshoot your code.
