@@ -1,4 +1,4 @@
-page 200
+page 200 (Chapter 5 objectivlle)
 - Had doubt why error comes whe try to access property of the same object inside of a method in an object.
  solution: use this property can access the property of the same object.
 

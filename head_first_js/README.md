@@ -377,5 +377,3 @@ DOM is a big tree of element objects.
     - string.replace("target","string") => Using this, string can be replaced.
     - string.match(/substring/g) => This can be used to check a particualr string is matching the main string.Regexp is
       required = /substring/g.
-
-

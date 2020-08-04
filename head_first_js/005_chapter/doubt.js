@@ -1,42 +1,45 @@
 // Doubt number 1
 
-var fiat = {
-    make: "Fiat",
-    started: false,
-    start: function () {
-      fiat.started = true; // Why here no error page.number 199 - 202
-      console.log(fiat.started); // What is the use of "this", if we could use to define started as fiat.started.
-    },
-    stop: function () {
-      started = false;
-    },
-    drive: function () {
-      if (fiat.started) {
-        console.log("Zoom zoom!");
-      } else {
-        console.log("You need to start the engine first.");
-      }
-    },
-  };
-  
-  fiat.drive();
-  fiat.start();
-  fiat.drive();
-  fiat.stop();
+let fiat = {
+  make: "Fiat",
+  started: false,
+  start: function () {
+    fiat.started = true; // Why here no error page.number 199 - 202
+    console.log(fiat.started); // What is the use of "this", if we could use to define started as fiat.started.
+  },
+  stop: function () {
+    started = false;
+  },
+  drive: function () {
+    if (fiat.started) {
+      console.log("Zoom zoom!");
+    } else {
+      console.log("You need to start the engine first.");
+    }
+  },
+};
+
+fiat.drive();
+fiat.start();
+fiat.drive();
+fiat.stop();
 
 // Doubt number 2
 
-function Car(make, model, year) { // Normal example
+function Car(make, model, year) {
+  // Normal example
   this.make = make;
   this.model = model;
   this.year = year;
 }
 
-function Car(make, model, year) {// Possibility
+function Car(make, model, year) {
+  // Possibility
   return { make, model, year };
 }
 
-const Car = (make, model, year) => {// Normal example error in ES6 says constructor required.
+const Car = (make, model, year) => {
+  // Normal example error in ES6 says constructor required.
   this.make = make;
   this.model = model;
   this.year = year;

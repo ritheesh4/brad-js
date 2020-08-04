@@ -165,14 +165,17 @@
 //   return true;
 // }
 
-function Duck(sound) {
-  this.sound = sound;
-  this.quack = function () {
-    console.log(this.sound);
-  };
-}
+// function Duck(sound) {
+//   this.sound = sound;
+//   this.quack = function () {
+//     console.log(this.sound);
+//   };
+// }
 
-let toy = new Duck("quack quack");
-toy.quack();
-console.log(typeof toy);
-console.log(toy instanceof Duck);
+// let toy = new Duck("quack quack");
+// toy.quack();
+// console.log(typeof toy);
+// console.log(toy instanceof Duck);
+
+console.log(0 ==+ "")
+console.log(0 ===+ "")
