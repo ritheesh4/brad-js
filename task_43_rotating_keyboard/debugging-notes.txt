@@ -1,0 +1,12 @@
+1. How to make cursor to position and blink when which the text is inputing through innerHtml method than usual direct mouse clicked keyboard
+   entering.
+
+   Solution:
+    - The easiet way to add cursor and position the blinking cursor is to keep inputs in textArea instead of normal div.
+    - The cursor of textArea appears only when the textArea is focused. So while inserting data into the textArea via innerHtml
+      won't work like the way we wanted. At that time, for each insert, foucs() function has to be called. This will easly bring
+      the cursor into the correct positon.
+    - Adding cursor via css after method will make the things very complicated. If we choose a normal div than a textArea for this application,
+      to bring the cursor to the next line while enter button clicked will make lot of messing problemes. textArea is the easiest way to solve this.
+      
+
